@@ -18,9 +18,9 @@
                                 <li><router-link to="/">Accueil</router-link></li>
                                 <li><router-link to="/timeline">Timeline</router-link></li>
                                 <li><router-link to="/contact">Contact</router-link></li>
-                                <li>
-                                    <router-link to="/quizz">Quizz</router-link>
-                                </li>
+                                <li><router-link to="/quizz">Quizz</router-link></li>
+                                <li><router-link to="/login">Log in</router-link></li>
+                                <li><router-link to="/register">Register</router-link></li>
                             </ul>
                         </div>
                         <div class="nav-horizontal-right"></div>
