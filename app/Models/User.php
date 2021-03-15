@@ -6,11 +6,15 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Timeline;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
 
+    public function timelines(){
+        return $this->hasMany(Timeline::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
