@@ -1,0 +1,16 @@
+html, body{
+     height: 100%;
+     margin: 0;
+}
+.container-nav{
+     height: 975px;
+     position: relative;
+     
+}
+.content{
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translateY(50%);
+}

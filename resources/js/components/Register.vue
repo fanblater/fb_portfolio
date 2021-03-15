@@ -46,7 +46,7 @@ export default {
                 console.log('saved');
             }).catch((err) => {
                 console.log(err.response.data.errors)
-               // this.errors = err.response.data.errors;
+               this.errors = err.response.data.errors;
             });
         }
     }

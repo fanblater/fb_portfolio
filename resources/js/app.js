@@ -1,6 +1,7 @@
 
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import CustomCss from './../css/app.css';
 import Home from './components/Homecomponent.vue';
 import Contact from './components/ContactComponent.vue';
 import Quizz from './components/QuizzComponent.vue';
@@ -55,5 +56,6 @@ const router = new VueRouter({ routes });
 
 const app = new Vue({
     el: '#app',
+    CustomCss,
     router: router
 });
