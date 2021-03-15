@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Timeline;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TimelineController extends Controller
 {
@@ -24,9 +25,9 @@ class TimelineController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
     }
 
     /**
@@ -37,7 +38,19 @@ class TimelineController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'user_id' => auth()->id(),
+            'date' => ['required'],
+            'formation' => ['required'],
+            'titre' => ['required'],
+            'projets' => ['required'],
+            'projets_annexes' => ['required'],
+        ]);
+
+        Timeline::create($request->all());
+        dd(response());
+        return response()->json(['message'=> 'la timeline a été ajouté']);
     }
 
     /**
