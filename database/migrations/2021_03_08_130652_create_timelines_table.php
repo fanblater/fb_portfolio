@@ -13,14 +13,18 @@ class CreateTimelinesTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('timelines');
         Schema::create('timelines', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('user_id');
             $table->date('date');
             $table->string('formation');
             $table->string('titre');
             $table->string('projets');
             $table->string('projets_annexes');
             $table->timestamp('updated_at');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
         });
     }
 
