@@ -1,81 +1,97 @@
 <template>
 <div v-if="user">
+<div class="row mb-5">
+<div class="col-sm-10">
 User information :
 
 user id = > {{user.id}}
 You'r logged as {{user.name}}
 You'r email is {{user.email}}
-<button @click.prevent="logout">Logout</button>
-
-<form>
-    <p>Création d'un nouvelle étape de la timeline</p>
-
-    <label for="user_id">{{user.id}}</label>
-    <input type="hidden" name="user_id" v-model="form.user_id">
-    <label for="date">Date</label>
-    <input type="date" v-model="form.date">
-    <br/>
-    <label for="titre">Titre</label>
-    <input type="text" v-model="form.titre">
-    <br/>
-    <label for="formation">Formation</label>
-    <input type="text" v-model="form.formation">
-    <br/>
-    <label for="projets">Projets</label>
-    <input type="text" v-model="form.projets">
-    <br/>
-    <label for="projets_annexes">Projets_annexes</label>
-    <input type="text" v-model="form.projets_annexes">
-
-    <button @click.prevent="createTimeline" class="btn btn-primary">Créer mon étape</button>
-</form>
 
 </div>
+<div class="col-sm-2">
+<button class="btn btn-warning" @click.prevent="logout">Logout</button>
+</div>
+</div>
+
+<div class="row">
+<div class="col-sm-12">
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th class="col">id</th>
+            <th class="col">date</th>
+            <th class="col">titre</th>
+            <th class="col">formation</th>
+            <th class="col">projets</th>
+            <th class="col">projets_annexes</th>
+            <th class="col" >Actions</th>
+            <th class="col">
+
+                <router-link to="/create">Create timeline</router-link>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr v-for="timeline in timelines" :key="timeline.id">
+            <th scope="row" >{{timeline.id}}</th>
+            <td>{{ timeline.date}}</td>
+            <td>{{timeline.titre}}</td>
+            <td>{{timeline.formation}}</td>
+            <td>{{timeline.projets}}</td>
+            <td>{{timeline.projets_annexes}}</td>
+            <td>
+                <div class="btn-group" role="group">
+                    <router-link :to="{name: 'update', params: { id: timeline.id}}" class="btn btn-success">Edit</router-link>
+                    <button class="btn btn-danger" @click.prevent="deleteTimeline(timeline.id)">Delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
 </template>
 <script>
 
 
 export default {
-    props: [
-        'id_user'
-    ],
-    data() {
+     data() {
         return{
             user:null,
-            form: {
-                user_id: '',
-                date: '',
-                titre: '',
-                formation: '',
-                projets: '',
-                projets_annexes: ''
-            },errors: []
+            timelines: {}
         }
     },
-    methods: {
-        logout(){
-            axios.post('/api/logout').then(() => {
-                this.$router.push({name: 'Home'})
-            })
-        },
-        createTimeline(){
-            console.log(this.user.id)
-            console.log(this.form)
-            this.form.user_id = this.user.id
-            axios.post('/api/create', this.form).then(() => {
+        created(){
+            axios.get('http://127.0.0.1:8000/timelinelist')
+            .then(response => this.timelines = response.data)
+            .catch(error => console.log(error));
 
-                console.log(this.form)
-            }).catch((err) => {
-                console.log(err)
-                this.errors = err.response.data.errors
-            })
-        }
-    },
-    beforeCreate(){
+        },
+        beforeCreate(){
         axios.get('/api/user').then((res) => {
             this.user = res.data
             console.log(this.user.id)
         })
+    },methods:{
+        deleteTimeline(id){
+        axios.delete(`/api/delete/${id}`).then(response => {
+            console.log(response);
+            window.location.reload();
+        })
+        }
     }
+
 }
 </script>
