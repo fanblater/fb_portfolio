@@ -14,14 +14,16 @@ class Timeline extends Model
     public function users(){
         return $this->belongsTo(User::class);
     }
+    
     protected $fillable = [
+        'user_id',
         'date',
         'formation',
         'titre',
         'projets',
         'projets_annexes',
         'updated_at',
-        'user_id',
+
     ];
 
     public $timestamps = false;
