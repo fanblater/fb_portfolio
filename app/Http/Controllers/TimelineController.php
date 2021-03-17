@@ -40,16 +40,14 @@ class TimelineController extends Controller
     {
 
         $request->validate([
-            'user_id' => auth()->id(),
+            'user_id' => ['required', 'integer'],
             'date' => ['required'],
             'formation' => ['required'],
             'titre' => ['required'],
             'projets' => ['required'],
             'projets_annexes' => ['required'],
         ]);
-
         Timeline::create($request->all());
-        dd(response());
         return response()->json(['message'=> 'la timeline a été ajouté']);
     }
 
@@ -61,7 +59,9 @@ class TimelineController extends Controller
      */
     public function show($id)
     {
-        //
+        $timeline = Timeline::find($id);
+
+        return response()->json($timeline);
     }
 
     /**
@@ -70,9 +70,9 @@ class TimelineController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+
     }
 
     /**
@@ -84,7 +84,10 @@ class TimelineController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $timeline = Timeline::find($id);
+        $timeline->update($request->all());
+
+        return response()->json('timeline updated');
     }
 
     /**
@@ -95,6 +98,9 @@ class TimelineController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $timeline = Timeline::find($id);
+        $timeline->delete();
+
+        return response()->json('timeline deleted');
     }
 }
