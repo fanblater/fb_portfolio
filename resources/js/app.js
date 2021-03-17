@@ -9,6 +9,9 @@ import Timeline from './components/TimelineComponent.vue';
 import Login from './components/Login.vue';
 import Register from './components/Register.vue';
 import Dashboard from './components/Dashboard.vue';
+import EditTimeline from './components/EditTimeline.vue';
+import DeleteTimeline from './components/DeleteTimeline.vue';
+import CreateTimeline from './components/CreateTimeline.vue';
 
 require('./bootstrap');
 
@@ -48,6 +51,27 @@ const routes = [
     }, {
         path: '/register',
         component: Register,
+    }, {
+        path: '/update/:id',
+        component: EditTimeline,
+        name: 'update',
+        meta: {
+            requiresAuth: true
+        },
+    }, {
+        path: '/delete',
+        component: DeleteTimeline,
+        name: 'delete',
+        meta: {
+            requiresAuth: true
+        }
+    }, {
+        path: '/create',
+        component: CreateTimeline,
+        name: 'create',
+        meta: {
+            requiresAuth: true
+        }
     }
 ]
 
