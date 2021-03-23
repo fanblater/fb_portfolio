@@ -49,8 +49,8 @@
                                         {{-- <li>
                                                             <router-link to="/register">Register</router-link>
                                                         </li> --}}
-                                        <li><a href="www.linkedin.com/in/fanny-bellais">Linkdin</a></li>
-                                        <li><a href="https://github.com/fanblater">Github</a></li>
+                                        <li><a target="blank" href="https://linkedin.com/in/fanny-bellais">Linkdin</a></li>
+                                        <li><a target="blank" href="https://github.com/fanblater">Github</a></li>
                                     </ul>
 
                                 </nav>
