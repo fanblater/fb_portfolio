@@ -1928,6 +1928,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['id_user'],
   data: function data() {
@@ -1939,7 +1945,9 @@ __webpack_require__.r(__webpack_exports__);
         titre: '',
         formation: '',
         projets: '',
-        projets_annexes: ''
+        content_projets: '',
+        projets_annexes: '',
+        content_projets_annexes: ''
       },
       errors: []
     };
@@ -1957,8 +1965,6 @@ __webpack_require__.r(__webpack_exports__);
     createTimeline: function createTimeline() {
       var _this2 = this;
 
-      console.log(this.user.id);
-      console.log(this.form);
       this.form.user_id = this.user.id;
       axios.post('/api/create', this.form).then(function () {
         _this2.$router.push({
@@ -2060,6 +2066,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2071,10 +2081,12 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     axios.get('http://127.0.0.1:8000/timelinelist').then(function (response) {
-      return _this.timelines = response.data;
+      _this.timelines = response.data;
+      console.log(_this.timelines);
     })["catch"](function (error) {
       return console.log(error);
     });
+    console.log(this.timelines);
   },
   beforeCreate: function beforeCreate() {
     var _this2 = this;
@@ -2148,6 +2160,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2159,6 +2178,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get("/api/timeline/".concat(this.$route.params.id)).then(function (res) {
       _this.timeline = res.data;
+      console.log(_this.timeline);
     });
   },
   methods: {
@@ -2342,6 +2362,10 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.form);
       axios.post('/api/register', this.form).then(function () {
         console.log('saved');
+
+        _this.$router.push({
+          name: 'Dashboard'
+        });
       })["catch"](function (err) {
         console.log(err.response.data.errors);
         _this.errors = err.response.data.errors;
@@ -2378,11 +2402,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      show: false,
       timelines: {}
     };
+  },
+  computed: {
+    orderByDate: function orderByDate() {
+      return _.groupBy(this.timelines, 'date');
+    }
   },
   created: function created() {
     var _this = this;
@@ -7008,7 +7044,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html, body{\nmargin: 0;\npadding: 3px;\nbox-sizing: border-box;\nheight: 100%;\n}\n#app\n{\n    border-radius: 10px;\n    background: linear-gradient(207deg, #A6036D, #F27999);\n    height: 100%;\n}\n.logo{\n        position: absolute;\n        left: 0;\n        height: 300px;\n        width: 170px;\n        top: -74px;\n}\n.img_rounded{\n        border-radius: 50%;\n        height: 300px;\n        width: 300px;\n        border: 4px solid #F2D272;\n}\n.slash{\n    width: 15px;\n    height: 100%;\n    transform: skew(-20deg);\n    background: #F2D272;\n}\n.heading-content{\n    margin-top: 6.5rem;\n\n}\n.heading-content h2 {\n    color: #F2D272;\n    font-size: 4rem;\n}\n.heading-content p {\n    color: #A0CCF2;\n    font-size: 3rem;\n    font-weight: lighter;\n    font-style: italic;\n}\nnav ul li a{\n    text-decoration: none;\n    font-size: large;\n    color: #A6036D;\n}\nnav ul li {\n    background-color: white;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    width: 55%;\n    margin: 1rem;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "html, body{\nmargin: 0;\npadding: 3px;\nbox-sizing: border-box;\nheight: 100%;\n}\n#app\n{\n    overflow: hidden;\n    border-radius: 10px;\n    background: linear-gradient(207deg, #A6036D, #F27999);\n    height: 100%;\n}\n\n.logo{\n        position: absolute;\n        left: 0;\n        height: 300px;\n        width: 170px;\n        top: -74px;\n}\n.img_rounded{\n        border-radius: 50%;\n        height: 300px;\n        width: 300px;\n        border: 4px solid #F2D272;\n}\n.slash{\n    width: 15px;\n    height: 100%;\n    transform: skew(-20deg);\n    background: #F2D272;\n}\n.heading-content{\n    margin-top: 6.5rem;\n\n}\n.heading-content h2 {\n    color: #F2D272;\n    font-size: 4rem;\n}\n.heading-content p {\n    color: #A0CCF2;\n    font-size: 3rem;\n    font-weight: lighter;\n    font-style: italic;\n}\nnav ul li a{\n    text-decoration: none;\n    font-size: large;\n    color: #F2D272;\n}\nnav ul li {\n     border: 10px solid;\n     border-image-slice: 1;\n     border-width: 5px;\n    border-image-source: linear-gradient(to left, #F2D272, #A0CCF2);\n\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n}\n.slide-enter-active,\n.slide-leave-active {\n    transition: 800ms;\n\n}\n\n/* .slide-enter-to {\n    position: relative;\n    left: 0;\n} */\n\n/* .slide-leave {\n    position: absolute;\n}\n */\n.slide-enter\n    {\ntransform: translate(100%,0)\n}\n\n.slide-leave-to {\n transform: translate(-130%, 0);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39330,6 +39366,33 @@ var render = function() {
           _vm._v(" "),
           _c("br"),
           _vm._v(" "),
+          _c("label", { attrs: { for: "content_projets" } }, [
+            _vm._v("Contenu du projet")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.content_projets,
+                expression: "form.content_projets"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.form.content_projets },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "content_projets", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
           _c("label", { attrs: { for: "projets_annexes" } }, [
             _vm._v("Projets_annexes")
           ]),
@@ -39354,6 +39417,39 @@ var render = function() {
               }
             }
           }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "content_projets_annexes" } }, [
+            _vm._v("Contenu des projets annexes")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.content_projets_annexes,
+                expression: "form.content_projets_annexes"
+              }
+            ],
+            attrs: { type: "text" },
+            domProps: { value: _vm.form.content_projets_annexes },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(
+                  _vm.form,
+                  "content_projets_annexes",
+                  $event.target.value
+                )
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("br"),
           _vm._v(" "),
           _c(
             "button",
@@ -39442,7 +39538,13 @@ var render = function() {
                   _vm._v(" "),
                   _c("th", { staticClass: "col" }, [_vm._v("projets")]),
                   _vm._v(" "),
+                  _c("th", { staticClass: "col" }, [_vm._v("contenu projets")]),
+                  _vm._v(" "),
                   _c("th", { staticClass: "col" }, [_vm._v("projets_annexes")]),
+                  _vm._v(" "),
+                  _c("th", { staticClass: "col" }, [
+                    _vm._v("contenu projets annexes")
+                  ]),
                   _vm._v(" "),
                   _c("th", { staticClass: "col" }, [_vm._v("Actions")]),
                   _vm._v(" "),
@@ -39475,7 +39577,13 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(timeline.projets))]),
                     _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(timeline.content_projets))]),
+                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(timeline.projets_annexes))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      _vm._v(_vm._s(timeline.content_projets_annexes))
+                    ]),
                     _vm._v(" "),
                     _c("td", [
                       _c(
@@ -39684,8 +39792,40 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
+              _c("label", { attrs: { for: "content_projets" } }, [
+                _vm._v("Contenu du projet")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.timeline.content_projets,
+                    expression: "timeline.content_projets"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.timeline.content_projets },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.timeline,
+                      "content_projets",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
               _c("label", { attrs: { for: "projets_annexes" } }, [
-                _vm._v("projets annexes")
+                _vm._v("Projets_annexes")
               ]),
               _vm._v(" "),
               _c("input", {
@@ -39712,7 +39852,41 @@ var render = function() {
                     )
                   }
                 }
-              })
+              }),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c("label", { attrs: { for: "content_projets_annexes" } }, [
+                _vm._v("Contenu des projets annexes")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.timeline.content_projets_annexes,
+                    expression: "timeline.content_projets_annexes"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "text" },
+                domProps: { value: _vm.timeline.content_projets_annexes },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(
+                      _vm.timeline,
+                      "content_projets_annexes",
+                      $event.target.value
+                    )
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("br")
             ]),
             _vm._v(" "),
             _c(
@@ -39749,7 +39923,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
+  return _c("div", { staticClass: "container container-back" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
       _c("div", { staticClass: "col-sm-4" }, [
         _c("img", {
@@ -40102,22 +40276,43 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "row" }, [
       _c(
-        "ul",
-        { staticClass: "list-group" },
-        _vm._l(_vm.timelines, function(timeline) {
-          return _c(
-            "li",
-            { key: timeline.id, staticClass: "list-group-item" },
-            [
-              _c("span", [_vm._v(_vm._s(timeline.date))]),
-              _vm._v(" "),
-              _c("h1", [_vm._v(_vm._s(timeline.titre))]),
-              _vm._v(" "),
-              _c("p", [_vm._v(_vm._s(timeline.projets))])
-            ]
-          )
+        "div",
+        { staticClass: "col-md-12" },
+        _vm._l(_vm.orderByDate, function(timeline, date) {
+          return _c("div", { key: date, staticClass: "tuile-date" }, [
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    _vm.show = !_vm.show
+                  }
+                }
+              },
+              [_vm._v(_vm._s(date))]
+            ),
+            _vm._v(" "),
+            !_vm.show
+              ? _c(
+                  "div",
+                  { staticClass: "content-project" },
+                  _vm._l(timeline, function(time) {
+                    return _c("ul", { key: time.date }, [
+                      _c("li", [_c("h2", [_vm._v(_vm._s(time.titre))])]),
+                      _vm._v(" "),
+                      time.formation
+                        ? _c("li", [_c("p", [_vm._v(_vm._s(time.formation))])])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("li", [_c("p", [_vm._v(_vm._s(time.projets))])])
+                    ])
+                  }),
+                  0
+                )
+              : _vm._e()
+          ])
         }),
         0
       )
