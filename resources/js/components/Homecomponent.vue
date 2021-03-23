@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div class="container container-back">
         <div class="row justify-content-center">
         <div class="col-sm-4">
         <img class="img_rounded" :src="'/img/profil_lkd_fanny.jpg'" alt="photo de profil">

@@ -44,6 +44,8 @@ export default {
             console.log(this.form);
             axios.post('/api/register', this.form).then(() => {
                 console.log('saved');
+
+                this.$router.push({name: 'Dashboard'})
             }).catch((err) => {
                 console.log(err.response.data.errors)
                this.errors = err.response.data.errors;

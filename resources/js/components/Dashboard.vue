@@ -25,7 +25,9 @@ You'r email is {{user.email}}
             <th class="col">titre</th>
             <th class="col">formation</th>
             <th class="col">projets</th>
+            <th class="col">contenu projets</th>
             <th class="col">projets_annexes</th>
+            <th class="col">contenu projets annexes</th>
             <th class="col" >Actions</th>
             <th class="col">
 
@@ -41,7 +43,9 @@ You'r email is {{user.email}}
             <td>{{timeline.titre}}</td>
             <td>{{timeline.formation}}</td>
             <td>{{timeline.projets}}</td>
+            <td>{{timeline.content_projets}}</td>
             <td>{{timeline.projets_annexes}}</td>
+            <td>{{timeline.content_projets_annexes}}</td>
             <td>
                 <div class="btn-group" role="group">
                     <router-link :to="{name: 'update', params: { id: timeline.id}}" class="btn btn-success">Edit</router-link>
@@ -75,9 +79,9 @@ export default {
     },
         created(){
             axios.get('http://127.0.0.1:8000/timelinelist')
-            .then(response => this.timelines = response.data)
+            .then(response => {this.timelines = response.data; console.log(this.timelines)})
             .catch(error => console.log(error));
-
+        console.log(this.timelines)
         },
         beforeCreate(){
         axios.get('/api/user').then((res) => {

@@ -23,7 +23,10 @@
             <div class="row justify-content-center align-items-center h-100">
                 <div class="col-sm-10">
                     <div class="container">
-                        <router-view></router-view>
+                        <transition name="slide" mode="out-in" >
+                            <router-view class="view"></router-view>
+                        </transition>
+
                     </div>
                 </div>
                 <div class="col-sm-2">
@@ -31,9 +34,6 @@
 
                                 <nav>
                                     <ul>
-                                        <li>
-
-                                        </li>
                                         <li>
                                             <router-link to="/timeline">Timeline</router-link>
                                         </li>

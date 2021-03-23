@@ -12,8 +12,15 @@
                     <input type="text" class="form-control" v-model="timeline.formation">
                     <label for="projets">projets</label>
                     <input type="text" class="form-control" v-model="timeline.projets">
-                    <label for="projets_annexes">projets annexes</label>
+                    <label for="content_projets">Contenu du projet</label>
+                    <input type="text" class="form-control" v-model="timeline.content_projets"/>
+                    <br/>
+                    <label for="projets_annexes">Projets_annexes</label>
                     <input type="text" class="form-control" v-model="timeline.projets_annexes">
+                    <br/>
+                    <label for="content_projets_annexes">Contenu des projets annexes</label>
+                    <input type="text" class="form-control" v-model="timeline.content_projets_annexes"/>
+                    <br/>
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
@@ -33,6 +40,7 @@ export default {
     created(){
         axios.get(`/api/timeline/${this.$route.params.id}`).then((res) => {
             this.timeline = res.data;
+            console.log(this.timeline)
         })
     },methods: {
         updateTimeline(){

@@ -1,14 +1,20 @@
 <template>
     <div class="container">
-        <div class="row justify-content-center">
-            <ul class="list-group">
-                <li class="list-group-item" v-for="timeline in timelines" :key="timeline.id">
-                <span>{{timeline.date}}</span>
-                <h1>{{timeline.titre}}</h1>
-                <p>{{timeline.projets}}</p>
-                </li>
+        <div class="row">
+            <div class="col-md-12">
+            <div class="tuile-date" v-for="(timeline, date) in orderByDate" v-bind:key="date">
+            <button v-on:click="show = !show">{{date}}</button>
+               <div class="content-project"  v-if="!show">
+                    <ul v-for="time in timeline" :key="time.date">
+                        <li><h2>{{time.titre}}</h2></li>
+                        <li v-if="time.formation"><p>{{time.formation}}</p></li>
+                        <li><p>{{time.projets}}</p></li>
+                    </ul>
+            </div>
+            </div>
 
-            </ul>
+
+            </div>
         </div>
     </div>
 </template>
@@ -18,7 +24,13 @@
 
         data(){
             return{
+                show: false,
                 timelines: {}
+            }
+        },
+        computed: {
+            orderByDate(){
+                return _.groupBy(this.timelines, 'date')
             }
         },
         created(){

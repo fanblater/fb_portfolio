@@ -23,9 +23,15 @@ You'r email is {{user.email}}
     <label for="projets">Projets</label>
     <input type="text" v-model="form.projets">
     <br/>
+    <label for="content_projets">Contenu du projet</label>
+    <input type="text" v-model="form.content_projets">
+    <br/>
     <label for="projets_annexes">Projets_annexes</label>
     <input type="text" v-model="form.projets_annexes">
-
+    <br/>
+    <label for="content_projets_annexes">Contenu des projets annexes</label>
+    <input type="text" v-model="form.content_projets_annexes">
+    <br/>
     <button @click.prevent="createTimeline" class="btn btn-primary">Créer mon étape</button>
 </form>
 
@@ -47,7 +53,9 @@ export default {
                 titre: '',
                 formation: '',
                 projets: '',
-                projets_annexes: ''
+                content_projets: '',
+                projets_annexes: '',
+                content_projets_annexes: ''
             },errors: []
         }
     },
@@ -58,8 +66,6 @@ export default {
             })
         },
         createTimeline(){
-            console.log(this.user.id)
-            console.log(this.form)
             this.form.user_id = this.user.id
             axios.post('/api/create', this.form).then(() => {
 
