@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Timeline;
+use Error;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Throwable;
 
 class TimelineController extends Controller
 {
@@ -15,7 +17,8 @@ class TimelineController extends Controller
      */
     public function index()
     {
-        $timelines = Timeline::all();
+        $timelines = Timeline::groupBy('date')->get();
+
 
         return response()->json($timelines, 200);
     }
@@ -39,16 +42,29 @@ class TimelineController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
-            'user_id' => ['required', 'integer'],
-            'date' => ['required'],
-            'formation' => ['required'],
-            'titre' => ['required'],
-            'projets' => ['required'],
-            'projets_annexes' => ['required'],
-        ]);
-        Timeline::create($request->all());
-        return response()->json(['message'=> 'la timeline a été ajouté']);
+        try{
+
+            $request->validate([
+                'user_id' => ['required', 'integer'],
+                'date' => ['required'],
+                'formation' => ['required'],
+                'titre' => ['required'],
+                'projets' => ['required'],
+                'content_projets' => ['required'],
+                'projets_annexes' => ['required'],
+                'content_projets_annexes' => ['required']
+            ]);
+            Timeline::create($request->all());
+
+
+
+            return response()->json(['message' => 'la timeline a été ajouté']);
+        }catch(Throwable $e){
+            report($e);
+        }
+
+
+
     }
 
     /**
@@ -86,7 +102,7 @@ class TimelineController extends Controller
     {
         $timeline = Timeline::find($id);
         $timeline->update($request->all());
-
+        dd(response());
         return response()->json('timeline updated');
     }
 

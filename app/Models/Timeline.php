@@ -14,7 +14,7 @@ class Timeline extends Model
     public function users(){
         return $this->belongsTo(User::class);
     }
-    
+
     protected $fillable = [
         'user_id',
         'date',
@@ -23,7 +23,13 @@ class Timeline extends Model
         'projets',
         'projets_annexes',
         'updated_at',
+        'content_projets',
+        'content_projets_annexes'
 
+    ];
+
+    protected $casts = [
+        'date' => 'date:Y'
     ];
 
     public $timestamps = false;

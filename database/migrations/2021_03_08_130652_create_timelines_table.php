@@ -21,7 +21,9 @@ class CreateTimelinesTable extends Migration
             $table->string('formation');
             $table->string('titre');
             $table->string('projets');
+            $table->string('content_projets');
             $table->string('projets_annexes');
+            $table->string('content_projets_annexes');
             $table->timestamp('updated_at');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
