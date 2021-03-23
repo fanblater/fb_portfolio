@@ -6,10 +6,12 @@ height: 100%;
 }
 #app
 {
+    overflow: hidden;
     border-radius: 10px;
     background: linear-gradient(207deg, #A6036D, #F27999);
     height: 100%;
 }
+
 .logo{
         position: absolute;
         left: 0;
@@ -46,14 +48,40 @@ height: 100%;
 nav ul li a{
     text-decoration: none;
     font-size: large;
-    color: #A6036D;
+    color: #F2D272;
 }
 nav ul li {
-    background-color: white;
+     border: 10px solid;
+     border-image-slice: 1;
+     border-width: 5px;
+    border-image-source: linear-gradient(to left, #F2D272, #A0CCF2);
+
     list-style: none;
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 55%;
     margin: 1rem;
+}
+.slide-enter-active,
+.slide-leave-active {
+    transition: 800ms;
+
+}
+
+/* .slide-enter-to {
+    position: relative;
+    left: 0;
+} */
+
+/* .slide-leave {
+    position: absolute;
+}
+ */
+.slide-enter
+    {
+transform: translate(100%,0)
+}
+
+.slide-leave-to {
+ transform: translate(-130%, 0);
 }
