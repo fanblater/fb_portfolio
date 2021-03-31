@@ -6,12 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Laravel</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-gl"></script>
 
 </head>
 
 <body>
     <div id="app">
+
         <div class="container-fluid h-100">
             <div class="row">
                 <div class="col-sm-12">
@@ -33,7 +36,7 @@
                     <header>
 
                                 <nav>
-                                    <ul>
+                                    <ul class="nav-rounded">
                                         <li>
                                             <router-link to="/timeline">Timeline</router-link>
                                         </li>
@@ -65,8 +68,8 @@
 
     </div>
 
-
     <script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 
 </html>
