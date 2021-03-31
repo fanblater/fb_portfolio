@@ -1,4 +1,3 @@
-
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import CustomCss from './../css/app.css';
@@ -12,74 +11,79 @@ import Dashboard from './components/Dashboard.vue';
 import EditTimeline from './components/EditTimeline.vue';
 import DeleteTimeline from './components/DeleteTimeline.vue';
 import CreateTimeline from './components/CreateTimeline.vue';
-
+import TimelineContentComponent from './components/TimelineContentComponent.vue';
 require('./bootstrap');
 
 window.Vue = require('vue').default;
 
 Vue.use(VueRouter);
 
-const routes = [
-    {
-        path: '/',
-        component: Home,
-        name: 'Home'
-    }, {
-        path: '/contact',
-        component: Contact
-    }, {
-        path: '/timeline',
-        component: Timeline
-    }, {
-        path: '/quizz',
-        component: Quizz
-    }, {
-        path: '/login',
-        component: Login,
-        name: 'Login'
-    }, {
-        path: '/dashboard',
-        component: Dashboard,
-        name: 'Dashboard',
-        beforeEnter: (to, form, next) => {
-            axios.get('/api/authenticated').then(() => {
-                next();
-            }).catch(() => {
-                return next({name: 'Login'})
+const routes = [{
+    path: '/',
+    component: Home,
+    name: 'Home'
+}, {
+    path: '/contact',
+    component: Contact
+}, {
+    path: '/timeline',
+    component: Timeline
+}, {
+    path: '/quizz',
+    component: Quizz
+}, {
+    path: '/login',
+    component: Login,
+    name: 'Login'
+}, {
+    path: '/dashboard',
+    component: Dashboard,
+    name: 'Dashboard',
+    beforeEnter: (to, form, next) => {
+        axios.get('/api/authenticated').then(() => {
+            next();
+        }).catch(() => {
+            return next({
+                name: 'Login'
             })
-        }
-    }, {
-        path: '/register',
-        component: Register,
-    }, {
-        path: '/update/:id',
-        component: EditTimeline,
-        name: 'update',
-        meta: {
-            requiresAuth: true
-        },
-    }, {
-        path: '/delete',
-        component: DeleteTimeline,
-        name: 'delete',
-        meta: {
-            requiresAuth: true
-        }
-    }, {
-        path: '/create',
-        component: CreateTimeline,
-        name: 'create',
-        meta: {
-            requiresAuth: true
-        }
+        })
     }
-]
+}, {
+    path: '/register',
+    component: Register,
+}, {
+    path: '/update/:id',
+    component: EditTimeline,
+    name: 'update',
+    meta: {
+        requiresAuth: true
+    },
+}, {
+    path: '/delete',
+    component: DeleteTimeline,
+    name: 'delete',
+    meta: {
+        requiresAuth: true
+    }
+}, {
+    path: '/create',
+    component: CreateTimeline,
+    name: 'create',
+    meta: {
+        requiresAuth: true
+    }
+}]
 
-const router = new VueRouter({ routes });
 
+const router = new VueRouter({
+    routes
+});
 
 const app = new Vue({
     el: '#app',
     CustomCss,
-    router: router
+    router: router,
+    components: {
+        'timeline-content-component': TimelineContentComponent
+    }
 });
