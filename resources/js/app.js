@@ -11,7 +11,6 @@ import Dashboard from './components/Dashboard.vue';
 import EditTimeline from './components/EditTimeline.vue';
 import DeleteTimeline from './components/DeleteTimeline.vue';
 import CreateTimeline from './components/CreateTimeline.vue';
-import TimelineContentComponent from './components/TimelineContentComponent.vue';
 require('./bootstrap');
 
 window.Vue = require('vue').default;
@@ -83,7 +82,5 @@ const app = new Vue({
     el: '#app',
     CustomCss,
     router: router,
-    components: {
-        'timeline-content-component': TimelineContentComponent
-    }
+
 });

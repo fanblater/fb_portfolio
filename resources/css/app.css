@@ -6,9 +6,11 @@ body {
     height: 100%;
     background: white;
 }
-
+ul li{
+    list-style: none;
+}
   #app {
-    overflow: hidden;
+    /* overflow: hidden; */
     height: 100%;
     background: rgba(242, 121, 153, 0.50);
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -67,10 +69,7 @@ body {
 
 }
 
-nav ul li a {
 
-
-}
 nav ul li a:after{
     height: 2rem;
     width: 2rem;
@@ -113,6 +112,88 @@ nav ul li {
 .slide-leave-to {
     transform: translate(-130%, 0);
 }
-.tuile-dates{
-    background-color: #A6036D;
+.tuile {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
+.tuile-dates{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+
+}
+.tuile-dates ul{
+    height: 432px;
+    width: 117px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #A6036D;
+    border-radius: 75px 0px 75px 0px;
+    box-shadow: 1px 1px 2px grey;
+
+}
+.tuile-dates ul:nth-child(even){
+    background-color: #A0CCF2;
+}
+.tuile-dates ul li {
+    color: azure;
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+    text-shadow: 1px 1px 2px grey;
+}
+
+.title{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: #A6036D;
+}
+.timeline-title {
+    font-family: 'Gill Sans',
+    'Gill Sans MT',
+    Calibri,
+    'Trebuchet MS',
+    sans-serif;
+    font-size: 1.5rem;
+    font-weight: bolder;
+    color: #D93D1A;
+}
+.project-name{
+    font-family: 'Gill Sans',
+    'Gill Sans MT',
+    Calibri,
+    'Trebuchet MS',
+    sans-serif;
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: #A0CCF2;
+}
+.tuile-content ul{
+    padding-top: 2rem;
+    margin-left: 2rem;
+     background-color: azure;
+     border-radius: 75px 0px 75px 0px;
+     height: 432px;
+     width: 641px;
+     box-shadow: 1px 1px 2px grey;
+
+}
+
+
+.expand-enter-active, .expand-leave-active{
+    transition: all 1s ease-in;
+
+}
+.expand-enter, .expand-leave-to{
+    transform: translateX(150px);
+    opacity: 0;
+
+}
+
+
+
