@@ -1,26 +1,37 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-            <div  v-for="(item, date) in orderByDate" :key="date" >
-                <button class="tuile-dates" @click="showSelfData(item)" >
-                    {{date}}
-                </button>
-            </div>
-            <div>
-                <div v-for="(item, date)  in itemTimeline" v-bind:key="date">
-                    <h1>Titre : {{item.titre}}</h1>
-                    <h2 v-if="item.formation">Formation : {{item.formation}}</h2>
-                    <h3>Projet : {{item.projets}}</h3>
-                    <p>Contenu du projet : {{item.content_projets}}</p>
-                    <h4 v-if="item.projets_annexes">A côté : {{item.projets_annexes}}</h4>
-                    <p>{{item.content_projets_annexes}}</p>
+
+        <div class="tuile">
+                <div class="tuile-dates">
+                    <ul v-for="(item, date) in orderByDate" :key="date">
+                        <li v-on:click.prevent="showSelfData(item, $event)" >{{date}}</li>
+                    </ul>
+                </div>
+                <div class="tuile-content">
+                    <transition name="expand" v-show="display">
+                            <ul v-for="(content, i)  in itemTimeline" v-bind:key="i">
+                                <li>
+                                    <p class="title"> {{content.titre}}</p>
+                                </li>
+                                <li>
+                                    <p class="timeline-title" v-if="content.formation">{{content.formation}}</p>
+                                </li>
+                                <li>
+                                    <p class="project-name">{{content.projets}}</p>
+                                </li>
+                                <li>
+                                    <p> {{content.content_projets}}</p>
+                                </li>
+                                <li>
+                                    <p class="timeline-title" v-if="content.projets_annexes">A côté : {{content.projets_annexes}}</p>
+                                </li>
+                                <li>
+                                    <p>{{content.content_projets_annexes}}</p>
+                                </li>
+                            </ul>
+                    </transition>
                 </div>
             </div>
 
-            </div>
-        </div>
-    </div>
 </template>
 
 <script>
@@ -31,7 +42,7 @@ export default {
         return {
             display: false,
             timelines: {},
-            itemTimeline : {}
+            itemTimeline : {},
         }
     },
     computed: {
@@ -39,9 +50,23 @@ export default {
             return _.groupBy(this.timelines, 'date')
         }
     },
+    watch:{
+        itemTimeline: function(val){
+
+            this.itemTimeline = val;
+
+        }
+    },
     methods: {
-        showSelfData(value){
-            this.itemTimeline = value
+        showSelfData(value, event){
+
+            this.itemTimeline = value;
+
+            if(this.display === false){
+                this.display = true;
+            }
+
+
         }
     },
     created() {
