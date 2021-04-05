@@ -15,6 +15,9 @@ class User extends Authenticatable
     public function timelines(){
         return $this->hasMany(Timeline::class);
     }
+    public function questions(){
+        return $this->hasMany(Question::class);
+    }
     /**
      * The attributes that are mass assignable.
      *
