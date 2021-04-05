@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" :style="{'background-image':'url(/img/bcpath.svg)'}">
 
         <div class="container-fluid h-100">
             <div class="row">
@@ -41,19 +41,22 @@
                                             <router-link to="/timeline">Timeline</router-link>
                                         </li>
                                         <li>
-                                            <router-link to="/contact">Contact</router-link>
-                                        </li>
-                                        <li>
                                             <router-link to="/quizz">Quizz</router-link>
                                         </li>
                                         <li>
-                                            <router-link to="/login">Log in</router-link>
+                                            <router-link to="/contact">Contact</router-link>
                                         </li>
-                                        {{-- <li>
+
+
+                                        {{--
+                                            <li>
+                                                <router-link to="/login">Log in</router-link>
+                                            </li>
+                                            <li>
                                                             <router-link to="/register">Register</router-link>
                                                         </li> --}}
-                                        <li><a target="blank" href="https://linkedin.com/in/fanny-bellais">Linkdin</a></li>
-                                        <li><a target="blank" href="https://github.com/fanblater">Github</a></li>
+                                        <li><a target="blank" href="https://linkedin.com/in/fanny-bellais"> <img src="{{asset('img/linkedin.svg')}}" alt="Linkdin link logo"></a></li>
+                                        <li><a target="blank" href="https://github.com/fanblater"><img src="{{asset('img/github-sign.svg')}}" alt="github link logo"></a></li>
                                     </ul>
 
                                 </nav>

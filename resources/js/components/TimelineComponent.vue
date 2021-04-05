@@ -19,13 +19,13 @@
                                     <p class="project-name">{{content.projets}}</p>
                                 </li>
                                 <li>
-                                    <p> {{content.content_projets}}</p>
+                                    <p class="project-content"> {{content.content_projets}}</p>
                                 </li>
                                 <li>
                                     <p class="timeline-title" v-if="content.projets_annexes">A côté : {{content.projets_annexes}}</p>
                                 </li>
                                 <li>
-                                    <p>{{content.content_projets_annexes}}</p>
+                                    <p class="project-content">{{content.content_projets_annexes}}</p>
                                 </li>
                             </ul>
                     </transition>

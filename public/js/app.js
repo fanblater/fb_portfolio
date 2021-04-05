@@ -2230,6 +2230,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -7074,7 +7076,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody {\n    margin: 0;\n    padding: 3px;\n    box-sizing: border-box;\n    height: 100%;\n    background: white;\n}\nul li{\n    list-style: none;\n}\n  #app {\n    /* overflow: hidden; */\n    height: 100%;\n    background: rgba(242, 121, 153, 0.50);\n    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);\n    backdrop-filter: blur(20.0px);\n    -webkit-backdrop-filter: blur(20.0px);\n    border-radius: 36px;\n    border: 1px solid rgba(255, 255, 255, 0.18);\n}\n\n.logo {\n    position: absolute;\n    left: 0;\n    height: 300px;\n    width: 170px;\n    top: -74px;\n}\n\n.img_rounded {\n    border-radius: 50%;\n    height: 300px;\n    width: 300px;\n    border: 4px solid #D93D1A;\n    box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n\n.slash {\n    width: 15px;\n    height: 100%;\n    transform: skew(-20deg);\n    background: #F2D272;\n   box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n\n.heading-content {\n    margin-top: 6.5rem;\n\n}\n\n.heading-content h2 {\n    color: #D93D1A;\n    font-size: 4rem;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n.heading-content p {\n    color: #A6036D;\n    font-size: 3rem;\n    font-weight: lighter;\n    font-style: italic;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n\nnav ul li a:after{\n    height: 2rem;\n    width: 2rem;\n    border-radius: 50%;\n    border-image-source: linear-gradient(to left, #A6036D, #A0CCF2);\n}\n\nnav ul li {\n    /* border: 10px solid;\n    border-image-slice: 1;\n    border-width: 5px; */\n\n\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n}\n\n.slide-enter-active,\n.slide-leave-active {\n    transition: 800ms;\n\n}\n\n/* .slide-enter-to {\n    position: relative;\n    left: 0;\n} */\n\n/* .slide-leave {\n    position: absolute;\n}\n */\n.slide-enter {\n    transform: translate(100%, 0)\n}\n\n.slide-leave-to {\n    transform: translate(-130%, 0);\n}\n.tuile {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.tuile-dates{\n    display: flex;\n    justify-content: flex-start;\n    flex-wrap: nowrap;\n    flex-direction: row;\n    align-items: center;\n\n}\n.tuile-dates ul{\n    height: 432px;\n    width: 117px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    background-color: #A6036D;\n    border-radius: 75px 0px 75px 0px;\n    box-shadow: 1px 1px 2px grey;\n\n}\n.tuile-dates ul:nth-child(even){\n    background-color: #A0CCF2;\n}\n.tuile-dates ul li {\n    color: azure;\n    font-size: large;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-weight: bolder;\n    text-shadow: 1px 1px 2px grey;\n}\n\n.title{\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 2rem;\n    font-weight: bolder;\n    color: #A6036D;\n}\n.timeline-title {\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.5rem;\n    font-weight: bolder;\n    color: #D93D1A;\n}\n.project-name{\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.2rem;\n    font-weight: bolder;\n    color: #A0CCF2;\n}\n.tuile-content ul{\n    padding-top: 2rem;\n    margin-left: 2rem;\n     background-color: azure;\n     border-radius: 75px 0px 75px 0px;\n     height: 432px;\n     width: 641px;\n     box-shadow: 1px 1px 2px grey;\n\n}\n\n\n.expand-enter-active, .expand-leave-active{\n    transition: all 1s ease-in;\n\n}\n.expand-enter, .expand-leave-to{\n    transform: translateX(150px);\n    opacity: 0;\n\n}\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody {\n    margin: 0;\n    padding: 3px;\n    box-sizing: border-box;\n    height: 100%;\n    background: white;\n}\nul li{\n    list-style: none;\n}\n  #app {\n    /* overflow: hidden; */\n    height: 100%;\n    background: rgba(242, 121, 153, 0.50);\n    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);\n    backdrop-filter: blur(20.0px);\n    -webkit-backdrop-filter: blur(20.0px);\n    border-radius: 36px;\n    border: 1px solid rgba(255, 255, 255, 0.18);\n    background-repeat: no-repeat;\n    background-position: -841px -624px;\n    background-size: 198rem;\n    background-origin: content-box;\n    background-attachment: fixed;\n}\n\n.logo {\n    position: absolute;\n    left: 0;\n    height: 300px;\n    width: 170px;\n    top: -74px;\n}\n\n.img_rounded {\n    border-radius: 50%;\n    height: 300px;\n    width: 300px;\n    border: 4px solid #D93D1A;\n    box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n\n.slash {\n    width: 15px;\n    height: 100%;\n    transform: skew(-20deg);\n    background: #F2D272;\n   box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n\n.heading-content {\n    margin-top: 6.5rem;\n\n}\n\n.heading-content h2 {\n    color: #D93D1A;\n    font-size: 4rem;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n.heading-content p {\n    color: #A6036D;\n    font-size: 3rem;\n    font-weight: lighter;\n    font-style: italic;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n\nnav ul li {\n    background:none;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n}\n\nnav ul li:not(:nth-last-of-type(-n+2)) {\n    border-radius: 50px;\n    background-color: #A6036D;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n\n}\nnav ul li a {\ncolor: antiquewhite;\nfont-family: 'Gill Sans',\n'Gill Sans MT',\nCalibri,\n'Trebuchet MS',\nsans-serif;\nfont-size: 1rem;\n}\nnav ul li a img{\n    width: 36px;\n}\n.slide-enter-active,\n.slide-leave-active {\n    transition: 800ms;\n}\n\n.slide-enter {\n    transform: translate(100%, 0)\n}\n\n.slide-leave-to {\n    transform: translate(-130%, 0);\n}\n.tuile {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.tuile-dates{\n    display: flex;\n    justify-content: flex-start;\n    flex-wrap: nowrap;\n    flex-direction: row;\n    align-items: center;\n\n}\n.tuile-dates ul{\n    height: 432px;\n    width: 117px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    background-color: #A6036D;\n    border-radius: 75px 0px 75px 0px;\n    box-shadow: 1px 1px 2px grey;\n\n}\n.tuile-dates ul:nth-child(even){\n    background-color: #A0CCF2;\n}\n.tuile-dates ul li {\n    color: azure;\n    font-size: large;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-weight: bolder;\n    text-shadow: 1px 1px 2px grey;\n}\n\n.title{\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 2rem;\n    font-weight: bolder;\n    color: #A6036D;\n}\n.timeline-title {\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.5rem;\n    font-weight: bolder;\n    color: #D93D1A;\n}\n.project-name{\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.2rem;\n    font-weight: bolder;\n    color: #A0CCF2;\n}\n.project-content{\n    color: black;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 1rem;\n}\n.tuile-content ul{\n    padding-top: 2rem;\n    margin-left: 2rem;\n     background-color: azure;\n     border-radius: 75px 0px 75px 0px;\n     height: 432px;\n     width: 641px;\n     box-shadow: 1px 1px 2px grey;\n\n}\n\n\n.expand-enter-active, .expand-leave-active{\n    transition: all 1s ease-in;\n\n}\n.expand-enter, .expand-leave-to{\n    transform: translateX(150px);\n    opacity: 0;\n\n}\n\n\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -39965,7 +39967,9 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _vm._m(1)
-    ])
+    ]),
+    _vm._v(" "),
+    _c("div")
   ])
 }
 var staticRenderFns = [
@@ -40368,7 +40372,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("p", [_vm._v(" " + _vm._s(content.content_projets))])
+                _c("p", { staticClass: "project-content" }, [
+                  _vm._v(" " + _vm._s(content.content_projets))
+                ])
               ]),
               _vm._v(" "),
               _c("li", [
@@ -40380,7 +40386,9 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("li", [
-                _c("p", [_vm._v(_vm._s(content.content_projets_annexes))])
+                _c("p", { staticClass: "project-content" }, [
+                  _vm._v(_vm._s(content.content_projets_annexes))
+                ])
               ])
             ])
           }),

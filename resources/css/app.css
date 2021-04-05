@@ -18,6 +18,11 @@ ul li{
     -webkit-backdrop-filter: blur(20.0px);
     border-radius: 36px;
     border: 1px solid rgba(255, 255, 255, 0.18);
+    background-repeat: no-repeat;
+    background-position: -841px -624px;
+    background-size: 198rem;
+    background-origin: content-box;
+    background-attachment: fixed;
 }
 
 .logo {
@@ -70,19 +75,9 @@ ul li{
 }
 
 
-nav ul li a:after{
-    height: 2rem;
-    width: 2rem;
-    border-radius: 50%;
-    border-image-source: linear-gradient(to left, #A6036D, #A0CCF2);
-}
-
 nav ul li {
-    /* border: 10px solid;
-    border-image-slice: 1;
-    border-width: 5px; */
-
-
+    background:none;
+    padding: 0.5rem;
     list-style: none;
     justify-content: center;
     align-items: center;
@@ -90,21 +85,34 @@ nav ul li {
     margin: 1rem;
 }
 
+nav ul li:not(:nth-last-of-type(-n+2)) {
+    border-radius: 50px;
+    background-color: #A6036D;
+    padding: 0.5rem;
+    list-style: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 1rem;
+
+}
+nav ul li a {
+color: antiquewhite;
+font-family: 'Gill Sans',
+'Gill Sans MT',
+Calibri,
+'Trebuchet MS',
+sans-serif;
+font-size: 1rem;
+}
+nav ul li a img{
+    width: 36px;
+}
 .slide-enter-active,
 .slide-leave-active {
     transition: 800ms;
-
 }
 
-/* .slide-enter-to {
-    position: relative;
-    left: 0;
-} */
-
-/* .slide-leave {
-    position: absolute;
-}
- */
 .slide-enter {
     transform: translate(100%, 0)
 }
@@ -172,6 +180,11 @@ nav ul li {
     font-size: 1.2rem;
     font-weight: bolder;
     color: #A0CCF2;
+}
+.project-content{
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
 }
 .tuile-content ul{
     padding-top: 2rem;
