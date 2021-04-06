@@ -11,11 +11,12 @@ You'r email is {{user.email}}
 </div>
 <div class="col-sm-2">
 <button class="btn btn-warning" @click.prevent="logout">Logout</button>
+<button class="btn btn-primary" @click.prevent="GoToQuestion(user.id)">Create question</button>
 </div>
 </div>
 
 <div class="row">
-<div class="col-sm-12">
+<div class="col-sm-10">
 
 <table class="table">
     <thead class="thead-dark">
@@ -58,7 +59,11 @@ You'r email is {{user.email}}
 
 
 </div>
+<div class="col-sm-2">
 
+
+
+</div>
 </div>
 
 
@@ -86,7 +91,6 @@ export default {
         beforeCreate(){
         axios.get('/api/user').then((res) => {
             this.user = res.data
-            console.log(this.user.id)
         })
     },methods:{
         deleteTimeline(id){
@@ -94,6 +98,9 @@ export default {
             console.log(response);
             window.location.reload();
         })
+        },
+        GoToQuestion(id){
+            this.$router.push({name: 'editquizz', params:{ Pid:id }});
         }
     }
 
