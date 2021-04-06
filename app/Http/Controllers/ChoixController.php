@@ -23,7 +23,7 @@ class ChoixController extends Controller
                 'is_valide' => ['required']
             ]);
             Choix::create($request->all());
-            return response()->json(['message' => 'la question a été ajouté']);
+            return response()->json(['message' => 'le choix a été ajouté']);
         } catch (Throwable $e) {
             report($e);
         }

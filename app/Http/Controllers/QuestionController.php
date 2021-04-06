@@ -9,8 +9,9 @@ use Throwable;
 class QuestionController extends Controller
 {
     public function index(){
-        $questions = Question::groupBy('id')->get();
-        return response()->json($questions,200);
+        $question = Question::groupBy('id')->get();
+
+        return response()->json($question,200);
     }
 
     public function store(Request $request){
@@ -18,7 +19,8 @@ class QuestionController extends Controller
             $request->validate([
                 'user_id' => ['required', 'integer'],
                 'question' => ['required'],
-                'is_active' => ['required']
+                'is_active' => ['required'],
+
             ]);
             Question::create($request->all());
             return response()->json(['message' => 'la question a été ajouté']);
