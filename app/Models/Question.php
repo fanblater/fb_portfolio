@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\Choix;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model{
@@ -22,4 +23,6 @@ class Question extends Model{
         'question',
         'is_active'
     ];
+
+    protected $table = 'question';
 }
