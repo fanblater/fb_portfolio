@@ -8,7 +8,7 @@ class QuizzChoix extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
     public function up()
@@ -17,7 +17,7 @@ class QuizzChoix extends Migration
         Schema::enableForeignKeyConstraints();
         Schema::create('choix', function (Blueprint $table) {
             $table->increments('id',true);
-            
+
             $table->unsignedInteger('id_question');
             $table->boolean('is_valide');
             $table->string('choix');
