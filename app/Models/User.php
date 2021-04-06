@@ -15,7 +15,7 @@ class User extends Authenticatable
     public function timelines(){
         return $this->hasMany(Timeline::class);
     }
-    public function questions(){
+    public function question(){
         return $this->hasMany(Question::class);
     }
     /**
