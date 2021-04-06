@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\ChoixController;
+use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\TimelineController;
-use App\Models\Timeline;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +27,5 @@ Route::get('/', function () {
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/timelinelist', [TimelineController::class, 'index'] );
+Route::get('/quizzlist',[QuestionController::class, 'index']);
+Route::get('/choixlist', [ChoixController::class, 'index']);
