@@ -9,11 +9,11 @@
 
             <transition name="slide" mode="out-in">
                 <div class="quizz-block" v-if="displayQuizz">
-                    <div class="question" v-for="(item, index) in questionchoix">
+                    <div class="question" v-for="(item, index) in questionchoix" :key="index">
                         <!--  {{item.question}} - {{index}} -->
                         <div class="question-reponse" v-if="questionIndex === index">
                             <h5>{{item.question}}</h5>
-                            <div class="reponseQ" v-for="(r, i) in item.choix">
+                            <div class="reponseQ" v-for="(r, i) in item.choix" :key="i">
                                 <label for="reponse">
                                     <input type="radio" v-bind:value="r.is_valide" v-bind:name="index"
                                         v-model="userResponses[index]"> {{r.choix}}

@@ -40770,7 +40770,7 @@ var render = function() {
                 { staticClass: "quizz-block" },
                 [
                   _vm._l(_vm.questionchoix, function(item, index) {
-                    return _c("div", { staticClass: "question" }, [
+                    return _c("div", { key: index, staticClass: "question" }, [
                       _vm.questionIndex === index
                         ? _c(
                             "div",
@@ -40779,42 +40779,46 @@ var render = function() {
                               _c("h5", [_vm._v(_vm._s(item.question))]),
                               _vm._v(" "),
                               _vm._l(item.choix, function(r, i) {
-                                return _c("div", { staticClass: "reponseQ" }, [
-                                  _c("label", { attrs: { for: "reponse" } }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.userResponses[index],
-                                          expression: "userResponses[index]"
-                                        }
-                                      ],
-                                      attrs: { type: "radio", name: index },
-                                      domProps: {
-                                        value: r.is_valide,
-                                        checked: _vm._q(
-                                          _vm.userResponses[index],
-                                          r.is_valide
-                                        )
-                                      },
-                                      on: {
-                                        change: function($event) {
-                                          return _vm.$set(
-                                            _vm.userResponses,
-                                            index,
+                                return _c(
+                                  "div",
+                                  { key: i, staticClass: "reponseQ" },
+                                  [
+                                    _c("label", { attrs: { for: "reponse" } }, [
+                                      _c("input", {
+                                        directives: [
+                                          {
+                                            name: "model",
+                                            rawName: "v-model",
+                                            value: _vm.userResponses[index],
+                                            expression: "userResponses[index]"
+                                          }
+                                        ],
+                                        attrs: { type: "radio", name: index },
+                                        domProps: {
+                                          value: r.is_valide,
+                                          checked: _vm._q(
+                                            _vm.userResponses[index],
                                             r.is_valide
                                           )
+                                        },
+                                        on: {
+                                          change: function($event) {
+                                            return _vm.$set(
+                                              _vm.userResponses,
+                                              index,
+                                              r.is_valide
+                                            )
+                                          }
                                         }
-                                      }
-                                    }),
-                                    _vm._v(
-                                      " " +
-                                        _vm._s(r.choix) +
-                                        "\n                            "
-                                    )
-                                  ])
-                                ])
+                                      }),
+                                      _vm._v(
+                                        " " +
+                                          _vm._s(r.choix) +
+                                          "\n                            "
+                                      )
+                                    ])
+                                  ]
+                                )
                               }),
                               _vm._v(" "),
                               _c("button", { on: { click: _vm.next } }, [
