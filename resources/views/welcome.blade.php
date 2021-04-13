@@ -13,62 +13,62 @@
 </head>
 
 <body>
-    <div id="app" :style="{'background-image':'url(/img/bcpath.svg)'}">
-
+    <div id="app">
+        <div id="wave" ></div>
         <div class="container-fluid h-100">
             <div class="row">
                 <div class="col-sm-12">
-                    <router-link to="/"><img class="logo" src="{{asset('img/logo_fb_v1.svg')}}" alt="logo"></router-link>
+                    <router-link to="/"><img class="logo" src="{{asset('img/logo_fb_v1.svg')}}" alt="logo">
+                    </router-link>
 
                 </div>
             </div>
 
             <div class="row justify-content-center align-items-center h-100">
-                <div class="col-sm-10">
-                    <div class="container">
-                        <transition name="slide" mode="out-in" >
+                <div class="col-sm-10 home-content">
+
+                        <transition name="slide" mode="out-in">
                             <router-view class="view"></router-view>
                         </transition>
 
-                    </div>
+
                 </div>
                 <div class="col-sm-2">
                     <header>
 
-                                <nav>
-                                    <ul class="nav-rounded">
-                                        <li>
-                                            <router-link to="/timeline">Timeline</router-link>
-                                        </li>
-                                        <li>
-                                            <router-link to="/quizz">Quizz</router-link>
-                                        </li>
-                                        <li>
-                                            <router-link to="/contact">Contact</router-link>
-                                        </li>
+                        <nav>
+                            <ul class="nav-rounded">
+                                <li>
+                                    <router-link to="/timeline">Timeline</router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/quizz">Quizz</router-link>
+                                </li>
+                                <li>
+                                    <router-link to="/contact">Contact</router-link>
+                                </li>
 
 
-                                        {{--
+                                {{--
                                             <li>
                                                 <router-link to="/login">Log in</router-link>
                                             </li>
                                             <li>
                                                             <router-link to="/register">Register</router-link>
                                                         </li> --}}
-                                        <li><a target="blank" href="https://linkedin.com/in/fanny-bellais"> <img src="{{asset('img/linkedin.svg')}}" alt="Linkdin link logo"></a></li>
-                                        <li><a target="blank" href="https://github.com/fanblater"><img src="{{asset('img/github-sign.svg')}}" alt="github link logo"></a></li>
-                                    </ul>
+                                <li><a target="blank" href="https://linkedin.com/in/fanny-bellais"> <img
+                                            src="{{asset('img/linkedin.svg')}}" alt="Linkdin link logo"></a></li>
+                                <li><a target="blank" href="https://github.com/fanblater"><img
+                                            src="{{asset('img/github-sign.svg')}}" alt="github link logo"></a></li>
+                            </ul>
 
-                                </nav>
+                        </nav>
 
                     </header>
                 </div>
             </div>
         </div>
-
-
-
-
+    </div>
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
