@@ -11,18 +11,46 @@ ul li{
 }
   #app {
     /* overflow: hidden; */
-    height: 100%;
-    background: rgba(242, 121, 153, 0.50);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-    backdrop-filter: blur(20.0px);
-    -webkit-backdrop-filter: blur(20.0px);
-    border-radius: 36px;
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    background-repeat: no-repeat;
-    background-position: -841px -624px;
-    background-size: 198rem;
+height: 100%;
+background: rgba(242, 121, 153, 0.50);
+box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+backdrop-filter: blur(20.0px);
+-webkit-backdrop-filter: blur(20.0px);
+border-radius: 36px;
+border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+#wave{
+    background-image: url('./../../public/img/bcpath.svg');
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    -webkit-animation: wave 15s linear infinite;
+    animation: wave 15s linear infinite;
+    background-position: bottom -460px right -152px;
+    background-size: 149rem;
     background-origin: content-box;
     background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    background-repeat: repeat;
+    border-bottom-right-radius: 38px;
+
+}
+
+
+ @keyframes wave {
+    0% {
+        transform: perspective(2rem);
+    }
+
+    50% {
+ transform: perspective(5rem);
+    }
+
+    100% {
+transform: perspective(10rem);
+    }
 }
 
 .logo {
@@ -52,7 +80,9 @@ ul li{
    -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);
    -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);
 }
-
+.home-content{
+    margin-left: 5rem;
+}
 .heading-content {
     margin-top: 6.5rem;
 
@@ -185,13 +215,14 @@ nav ul li a img{
     color: black;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1rem;
+    white-space: pre-wrap;
 }
 .tuile-content ul{
-    padding-top: 2rem;
+    padding: 2rem;
     margin-left: 2rem;
      background-color: azure;
      border-radius: 75px 0px 75px 0px;
-     height: 432px;
+
      width: 641px;
      box-shadow: 1px 1px 2px grey;
 
@@ -207,6 +238,45 @@ nav ul li a img{
     opacity: 0;
 
 }
+.fade-enter-active,
+.fade-leave-active {
+    transition: opactity .5s;
+}
+.fade-enter,
+.fade-leave-to {
+    opacity: 0;
+}
 
+/*Quizz part */
 
+.quizz-head{
+    background-color: azure;
+    border-radius: 50px;
+    display: flex;
+    width: 56%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 30%;
+    margin-top: -13rem;
+    padding: 1rem;
+}
+.quizz-head h1{
+    color: #A6036D;
+}
+.quizz-head button {
+    background-color: #A6036D;
+    border-radius: 50px;
+    padding: 1rem;
+    color: azure;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1rem;
+    border-style: none;
+
+}
+.quizz-block{
+    display: flex;
+    justify-content: center;
+    background-color: azure;
+    border-radius: 50px;
+}
 
