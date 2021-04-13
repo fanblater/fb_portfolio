@@ -12,25 +12,25 @@ You'r email is {{user.email}}
 
     <input type="hidden" name="user_id" v-model="form.user_id">
     <label for="date">Date</label>
-    <input type="date" v-model="form.date">
+    <input class="form-control" type="date" v-model="form.date">
     <br/>
     <label for="titre">Titre</label>
-    <input type="text" v-model="form.titre">
+    <input type="text" class="form-control" v-model="form.titre">
     <br/>
     <label for="formation">Formation</label>
-    <input type="text" v-model="form.formation">
+    <input type="text" class="form-control" v-model="form.formation">
     <br/>
     <label for="projets">Projets</label>
-    <input type="text" v-model="form.projets">
+    <input type="text" class="form-control" v-model="form.projets">
     <br/>
     <label for="content_projets">Contenu du projet</label>
-    <input type="text" v-model="form.content_projets">
+    <textarea class="form-control" v-model="form.content_projets"></textarea>
     <br/>
     <label for="projets_annexes">Projets_annexes</label>
-    <input type="text" v-model="form.projets_annexes">
+    <input type="text" class="form-control" v-model="form.projets_annexes">
     <br/>
     <label for="content_projets_annexes">Contenu des projets annexes</label>
-    <input type="text" v-model="form.content_projets_annexes">
+    <textarea  class="form-control"  v-model="form.content_projets_annexes"></textarea>
     <br/>
     <button @click.prevent="createTimeline" class="btn btn-primary">Créer mon étape</button>
 </form>
