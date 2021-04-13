@@ -1,5 +1,5 @@
 <template>
-    <div class="container container-back">
+
         <div class="row justify-content-center">
         <div class="col-sm-4">
         <img class="img_rounded" :src="'/img/profil_lkd_fanny.jpg'" alt="photo de profil">
@@ -9,15 +9,14 @@
         </div>
         <div class="col-sm-7 heading-content">
 
-                <h2>Développeuse web</h2>
-                <p >Mais pas que !</p>
+                <h2>Fanny Bellais</h2>
+                <p >Développeuse web</p>
 
         </div>
 
         </div>
-    <div >
-    </div>
-    </div>
+
+
 </template>
 
 <script>
