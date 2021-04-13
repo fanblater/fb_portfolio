@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Choix;
 use Illuminate\Http\Request;
 use Throwable;
+use Illuminate\Support\Facades\DB;
 
 class ChoixController extends Controller
 {
     public function index()
     {
-        $choix = Choix::groupBy('id')->get();
-        return response()->json($choix, 200);
+        $choix = DB::table('choix')->join('question', 'question.id' ,'=', 'choix.id_question')
+        ->select('question','id_question','is_active', 'choix', 'is_valide')->get();
+        return response()->json([$choix], 200);
     }
 
     public function store(Request $request)
@@ -23,6 +25,7 @@ class ChoixController extends Controller
                 'is_valide' => ['required']
             ]);
             Choix::create($request->all());
+            dd($request->all());
             return response()->json(['message' => 'le choix a été ajouté']);
         } catch (Throwable $e) {
             report($e);

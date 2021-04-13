@@ -17,10 +17,12 @@ public function question(){
 }
 
 protected $fillable = [
+    'id_question',
     'is_valide',
     'choix',
 ];
 
+protected $table = 'choix';
 
 
 }
