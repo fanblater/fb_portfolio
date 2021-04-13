@@ -24,7 +24,8 @@ const routes = [{
     name: 'Home'
 }, {
     path: '/contact',
-    component: Contact
+    component: Contact,
+    name: 'contact'
 }, {
     path: '/timeline',
     component: Timeline

@@ -1923,21 +1923,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
       form: {
         question: '',
-        is_active: '',
-        user_id: null
+        is_active: false,
+        user_id: 0
       },
       formChoix: {
-        id_question: '',
-        is_valide: '',
+        id_question: 0,
+        is_valide: false,
         choix: ''
       },
       questions: {},
-      selected: ''
+      selected: '',
+      choix: {},
+      id_choix: 0,
+      alert: null,
+      alertchoix: null
     };
   },
   created: function created() {
@@ -1946,6 +1968,11 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('http://127.0.0.1:8000/quizzlist').then(function (response) {
       console.log(response.data);
       _this.questions = response.data;
+    })["catch"](function (err) {
+      console.log(err);
+    });
+    axios.get('http://127.0.01:8000/choixlist').then(function (response) {
+      _this.choix = response.data;
     })["catch"](function (err) {
       console.log(err);
     });
@@ -1959,11 +1986,33 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post('/api/storequestion', this.form).then(function () {
         console.log(_this2.form);
+        _this2.alert = true;
       })["catch"](function (err) {
+        _this2.alert = false;
         console.log(err);
       });
     },
-    addChoix: function addChoix() {}
+    addChoix: function addChoix() {
+      var _this3 = this;
+
+      axios.post('/api/storechoix', this.formChoix).then(function () {
+        console.log(_this3.formChoix);
+        _this3.alertchoix = true;
+        window.location.reload();
+      })["catch"](function (err) {
+        console.log(err);
+        _this3.alertchoix = false;
+      });
+    },
+    deleteChoix: function deleteChoix() {
+      console.log(this.id_choix);
+      axios["delete"]("/api/deletechoix/".concat(this.id_choix)).then(function (response) {
+        console.log(response);
+        window.location.reload();
+      })["catch"](function (err) {
+        console.log(err);
+      });
+    }
   }
 });
 
@@ -2068,6 +2117,7 @@ __webpack_require__.r(__webpack_exports__);
 
     axios.get('/api/user').then(function (res) {
       _this3.user = res.data;
+      console.log(_this3.user.id);
     });
   }
 });
@@ -2309,7 +2359,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   mounted: function mounted() {
     console.log('Component mounted.');
@@ -2385,7 +2434,101 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      questionchoix: {},
+      displayQuizz: false,
+      displayHeadQ: true,
+      questionIndex: 0,
+      userResponses: Array(),
+      counter: 0,
+      scoremessage: 'Felicitation c\'est un sans fautes !',
+      scoremessageunder: 'Bon ce n\'est pas encore ça mais n\'hesitez pas à me contacter pour en savoir plus'
+    };
+  },
+  beforeCreate: function beforeCreate() {
+    var _this = this;
+
+    // get question choix and
+    // group by question with creation new array of choix
+    axios.get('http://127.0.0.1:8000/choixlist').then(function (result) {
+      _this.questionchoix = _(result.data[0]).groupBy('question').map(function (group, question) {
+        return {
+          question: question,
+          choix: _.map(group, _.partial(_.omit, _, 'question'))
+        };
+      }).value();
+    })["catch"](function (err) {
+      console.log(err);
+    });
+  },
+  methods: {
+    // Display quizz on click openquizz
+    openQuizz: function openQuizz() {
+      var _this2 = this;
+
+      this.displayQuizz = true;
+      setTimeout(function () {
+        _this2.displayHeadQ = false;
+      }, 1000);
+    },
+    // next question on click with incrementation of index
+    next: function next() {
+      this.questionIndex++;
+    },
+    // score function to return val length by filtering
+    score: function score() {
+      return this.userResponses.filter(function (val) {
+        return val;
+      }).length;
+    },
+    tryagain: function tryagain() {},
+    gotoContact: function gotoContact() {
+      this.$router.push({
+        name: 'contact'
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -2591,7 +2734,8 @@ var routes = [{
   name: 'Home'
 }, {
   path: '/contact',
-  component: _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_2__.default
+  component: _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+  name: 'contact'
 }, {
   path: '/timeline',
   component: _components_TimelineComponent_vue__WEBPACK_IMPORTED_MODULE_4__.default
@@ -7150,11 +7294,17 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _public_img_bcpath_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../public/img/bcpath.svg */ "./public/img/bcpath.svg");
 // Imports
 
+
+
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_img_bcpath_svg__WEBPACK_IMPORTED_MODULE_2__.default);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody {\n    margin: 0;\n    padding: 3px;\n    box-sizing: border-box;\n    height: 100%;\n    background: white;\n}\nul li{\n    list-style: none;\n}\n  #app {\n    /* overflow: hidden; */\n    height: 100%;\n    background: rgba(242, 121, 153, 0.50);\n    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);\n    backdrop-filter: blur(20.0px);\n    -webkit-backdrop-filter: blur(20.0px);\n    border-radius: 36px;\n    border: 1px solid rgba(255, 255, 255, 0.18);\n    background-repeat: no-repeat;\n    background-position: -841px -624px;\n    background-size: 198rem;\n    background-origin: content-box;\n    background-attachment: fixed;\n}\n\n.logo {\n    position: absolute;\n    left: 0;\n    height: 300px;\n    width: 170px;\n    top: -74px;\n}\n\n.img_rounded {\n    border-radius: 50%;\n    height: 300px;\n    width: 300px;\n    border: 4px solid #D93D1A;\n    box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n\n.slash {\n    width: 15px;\n    height: 100%;\n    transform: skew(-20deg);\n    background: #F2D272;\n   box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n\n.heading-content {\n    margin-top: 6.5rem;\n\n}\n\n.heading-content h2 {\n    color: #D93D1A;\n    font-size: 4rem;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n.heading-content p {\n    color: #A6036D;\n    font-size: 3rem;\n    font-weight: lighter;\n    font-style: italic;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n\nnav ul li {\n    background:none;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n}\n\nnav ul li:not(:nth-last-of-type(-n+2)) {\n    border-radius: 50px;\n    background-color: #A6036D;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n\n}\nnav ul li a {\ncolor: antiquewhite;\nfont-family: 'Gill Sans',\n'Gill Sans MT',\nCalibri,\n'Trebuchet MS',\nsans-serif;\nfont-size: 1rem;\n}\nnav ul li a img{\n    width: 36px;\n}\n.slide-enter-active,\n.slide-leave-active {\n    transition: 800ms;\n}\n\n.slide-enter {\n    transform: translate(100%, 0)\n}\n\n.slide-leave-to {\n    transform: translate(-130%, 0);\n}\n.tuile {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.tuile-dates{\n    display: flex;\n    justify-content: flex-start;\n    flex-wrap: nowrap;\n    flex-direction: row;\n    align-items: center;\n\n}\n.tuile-dates ul{\n    height: 432px;\n    width: 117px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    background-color: #A6036D;\n    border-radius: 75px 0px 75px 0px;\n    box-shadow: 1px 1px 2px grey;\n\n}\n.tuile-dates ul:nth-child(even){\n    background-color: #A0CCF2;\n}\n.tuile-dates ul li {\n    color: azure;\n    font-size: large;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-weight: bolder;\n    text-shadow: 1px 1px 2px grey;\n}\n\n.title{\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 2rem;\n    font-weight: bolder;\n    color: #A6036D;\n}\n.timeline-title {\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.5rem;\n    font-weight: bolder;\n    color: #D93D1A;\n}\n.project-name{\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.2rem;\n    font-weight: bolder;\n    color: #A0CCF2;\n}\n.project-content{\n    color: black;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 1rem;\n}\n.tuile-content ul{\n    padding-top: 2rem;\n    margin-left: 2rem;\n     background-color: azure;\n     border-radius: 75px 0px 75px 0px;\n     height: 432px;\n     width: 641px;\n     box-shadow: 1px 1px 2px grey;\n\n}\n\n\n.expand-enter-active, .expand-leave-active{\n    transition: all 1s ease-in;\n\n}\n.expand-enter, .expand-leave-to{\n    transform: translateX(150px);\n    opacity: 0;\n\n}\n\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody {\n    margin: 0;\n    padding: 3px;\n    box-sizing: border-box;\n    height: 100%;\n    background: white;\n}\nul li{\n    list-style: none;\n}\n  #app {\n    /* overflow: hidden; */\nheight: 100%;\nbackground: rgba(242, 121, 153, 0.50);\nbox-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);\nbackdrop-filter: blur(20.0px);\n-webkit-backdrop-filter: blur(20.0px);\nborder-radius: 36px;\nborder: 1px solid rgba(255, 255, 255, 0.18);\n}\n\n#wave{\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    position: absolute;\n    bottom: 0;\n    right: 0;\n    -webkit-animation: wave 15s linear infinite;\n    animation: wave 15s linear infinite;\n    background-position: bottom -460px right -152px;\n    background-size: 149rem;\n    background-origin: content-box;\n    background-attachment: fixed;\n    height: 100%;\n    width: 100%;\n    background-repeat: repeat;\n    border-bottom-right-radius: 38px;\n\n}\n\n\n @-webkit-keyframes wave {\n    0% {\n        transform: perspective(2rem);\n    }\n\n    50% {\n transform: perspective(5rem);\n    }\n\n    100% {\ntransform: perspective(10rem);\n    }\n}\n\n\n @keyframes wave {\n    0% {\n        transform: perspective(2rem);\n    }\n\n    50% {\n transform: perspective(5rem);\n    }\n\n    100% {\ntransform: perspective(10rem);\n    }\n}\n\n.logo {\n    position: absolute;\n    left: 0;\n    height: 300px;\n    width: 170px;\n    top: -74px;\n}\n\n.img_rounded {\n    border-radius: 50%;\n    height: 300px;\n    width: 300px;\n    border: 4px solid #D93D1A;\n    box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n\n.slash {\n    width: 15px;\n    height: 100%;\n    transform: skew(-20deg);\n    background: #F2D272;\n   box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n.home-content{\n    margin-left: 5rem;\n}\n.heading-content {\n    margin-top: 6.5rem;\n\n}\n\n.heading-content h2 {\n    color: #D93D1A;\n    font-size: 4rem;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n.heading-content p {\n    color: #A6036D;\n    font-size: 3rem;\n    font-weight: lighter;\n    font-style: italic;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n\nnav ul li {\n    background:none;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n}\n\nnav ul li:not(:nth-last-of-type(-n+2)) {\n    border-radius: 50px;\n    background-color: #A6036D;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n\n}\nnav ul li a {\ncolor: antiquewhite;\nfont-family: 'Gill Sans',\n'Gill Sans MT',\nCalibri,\n'Trebuchet MS',\nsans-serif;\nfont-size: 1rem;\n}\nnav ul li a img{\n    width: 36px;\n}\n.slide-enter-active,\n.slide-leave-active {\n    transition: 800ms;\n}\n\n.slide-enter {\n    transform: translate(100%, 0)\n}\n\n.slide-leave-to {\n    transform: translate(-130%, 0);\n}\n.tuile {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.tuile-dates{\n    display: flex;\n    justify-content: flex-start;\n    flex-wrap: nowrap;\n    flex-direction: row;\n    align-items: center;\n\n}\n.tuile-dates ul{\n    height: 432px;\n    width: 117px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    background-color: #A6036D;\n    border-radius: 75px 0px 75px 0px;\n    box-shadow: 1px 1px 2px grey;\n\n}\n.tuile-dates ul:nth-child(even){\n    background-color: #A0CCF2;\n}\n.tuile-dates ul li {\n    color: azure;\n    font-size: large;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-weight: bolder;\n    text-shadow: 1px 1px 2px grey;\n}\n\n.title{\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 2rem;\n    font-weight: bolder;\n    color: #A6036D;\n}\n.timeline-title {\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.5rem;\n    font-weight: bolder;\n    color: #D93D1A;\n}\n.project-name{\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.2rem;\n    font-weight: bolder;\n    color: #A0CCF2;\n}\n.project-content{\n    color: black;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 1rem;\n    white-space: pre-wrap;\n}\n.tuile-content ul{\n    padding: 2rem;\n    margin-left: 2rem;\n     background-color: azure;\n     border-radius: 75px 0px 75px 0px;\n\n     width: 641px;\n     box-shadow: 1px 1px 2px grey;\n\n}\n\n\n.expand-enter-active, .expand-leave-active{\n    transition: all 1s ease-in;\n\n}\n.expand-enter, .expand-leave-to{\n    transform: translateX(150px);\n    opacity: 0;\n\n}\n.fade-enter-active,\n.fade-leave-active {\n    transition: opactity .5s;\n}\n.fade-enter,\n.fade-leave-to {\n    opacity: 0;\n}\n\n/*Quizz part */\n\n.quizz-head{\n    background-color: azure;\n    border-radius: 50px;\n    display: flex;\n    width: 56%;\n    justify-content: space-evenly;\n    align-items: center;\n    margin-left: 30%;\n    margin-top: -13rem;\n    padding: 1rem;\n}\n.quizz-head h1{\n    color: #A6036D;\n}\n.quizz-head button {\n    background-color: #A6036D;\n    border-radius: 50px;\n    padding: 1rem;\n    color: azure;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 1rem;\n    border-style: none;\n\n}\n.quizz-block{\n    display: flex;\n    justify-content: center;\n    background-color: azure;\n    border-radius: 50px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -7234,6 +7384,65 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
+/*!********************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
+  \********************************************************/
+/***/ ((module) => {
+
+"use strict";
+
+
+module.exports = function (url, options) {
+  if (!options) {
+    // eslint-disable-next-line no-param-reassign
+    options = {};
+  } // eslint-disable-next-line no-underscore-dangle, no-param-reassign
+
+
+  url = url && url.__esModule ? url.default : url;
+
+  if (typeof url !== "string") {
+    return url;
+  } // If url is already wrapped in quotes, remove them
+
+
+  if (/^['"].*['"]$/.test(url)) {
+    // eslint-disable-next-line no-param-reassign
+    url = url.slice(1, -1);
+  }
+
+  if (options.hash) {
+    // eslint-disable-next-line no-param-reassign
+    url += options.hash;
+  } // Should url be wrapped?
+  // See https://drafts.csswg.org/css-values-3/#urls
+
+
+  if (/["'() \t\n]/.test(url) || options.needQuotes) {
+    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
+  }
+
+  return url;
+};
+
+/***/ }),
+
+/***/ "./public/img/bcpath.svg":
+/*!*******************************!*\
+  !*** ./public/img/bcpath.svg ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/bcpath.svg?6b82deff590c12a34318d3c43c60e637");
 
 /***/ }),
 
@@ -39329,7 +39538,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-sm-6" }, [
+    _c("div", { staticClass: "col-sm-4" }, [
       _c(
         "form",
         {
@@ -39437,10 +39646,22 @@ var render = function() {
             [_vm._v("Créer la question ")]
           )
         ]
-      )
+      ),
+      _vm._v(" "),
+      _vm.alert === true
+        ? _c("div", { staticClass: "alert alert-success" }, [
+            _vm._v("Votre question à été ajouté")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.alert === false
+        ? _c("div", { staticClass: "alert alert-danger" }, [
+            _vm._v("Une erreur s'est produite et trouve ton bug ;)")
+          ])
+        : _vm._e()
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-6" }, [
+    _c("div", { staticClass: "col-sm-4" }, [
       _c("label", { attrs: { for: "choix" } }, [_vm._v("Réponse")]),
       _vm._v(" "),
       _c("input", {
@@ -39506,9 +39727,11 @@ var render = function() {
               }
             },
             _vm._l(_vm.questions, function(q) {
-              return _c("option", { key: q.id }, [
+              return _c("option", { domProps: { value: q.id } }, [
                 _vm._v(
-                  "\n                    " +
+                  "\n                   " +
+                    _vm._s(q.id) +
+                    " - " +
                     _vm._s(q.question) +
                     "\n                "
                 )
@@ -39566,6 +39789,80 @@ var render = function() {
             "button",
             { staticClass: "btn btn-success", attrs: { type: "submit" } },
             [_vm._v("Créer la réponse ")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _vm.alertchoix === true
+        ? _c("div", { staticClass: "alert alert-success" }, [
+            _vm._v("Votre question à été ajouté")
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.alertchoix === false
+        ? _c("div", { staticClass: "alert alert-danger" }, [
+            _vm._v("Une erreur s'est produite et trouve ton bug ;)")
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-sm-4" }, [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.deleteChoix($event)
+            }
+          }
+        },
+        [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.id_choix,
+                  expression: "id_choix"
+                }
+              ],
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.id_choix = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            _vm._l(_vm.choix, function(c) {
+              return _c("option", { domProps: { value: c.id } }, [
+                _vm._v(
+                  "\n                    " +
+                    _vm._s(c.id) +
+                    " - " +
+                    _vm._s(c.choix) +
+                    "\n                "
+                )
+              ])
+            }),
+            0
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-danger", attrs: { type: "submit" } },
+            [_vm._v("Supprimer ce choix")]
           )
         ]
       )
@@ -39654,6 +39951,7 @@ var render = function() {
                 expression: "form.date"
               }
             ],
+            staticClass: "form-control",
             attrs: { type: "date" },
             domProps: { value: _vm.form.date },
             on: {
@@ -39679,6 +39977,7 @@ var render = function() {
                 expression: "form.titre"
               }
             ],
+            staticClass: "form-control",
             attrs: { type: "text" },
             domProps: { value: _vm.form.titre },
             on: {
@@ -39704,6 +40003,7 @@ var render = function() {
                 expression: "form.formation"
               }
             ],
+            staticClass: "form-control",
             attrs: { type: "text" },
             domProps: { value: _vm.form.formation },
             on: {
@@ -39729,6 +40029,7 @@ var render = function() {
                 expression: "form.projets"
               }
             ],
+            staticClass: "form-control",
             attrs: { type: "text" },
             domProps: { value: _vm.form.projets },
             on: {
@@ -39747,7 +40048,7 @@ var render = function() {
             _vm._v("Contenu du projet")
           ]),
           _vm._v(" "),
-          _c("input", {
+          _c("textarea", {
             directives: [
               {
                 name: "model",
@@ -39756,7 +40057,7 @@ var render = function() {
                 expression: "form.content_projets"
               }
             ],
-            attrs: { type: "text" },
+            staticClass: "form-control",
             domProps: { value: _vm.form.content_projets },
             on: {
               input: function($event) {
@@ -39783,6 +40084,7 @@ var render = function() {
                 expression: "form.projets_annexes"
               }
             ],
+            staticClass: "form-control",
             attrs: { type: "text" },
             domProps: { value: _vm.form.projets_annexes },
             on: {
@@ -39801,7 +40103,7 @@ var render = function() {
             _vm._v("Contenu des projets annexes")
           ]),
           _vm._v(" "),
-          _c("input", {
+          _c("textarea", {
             directives: [
               {
                 name: "model",
@@ -39810,7 +40112,7 @@ var render = function() {
                 expression: "form.content_projets_annexes"
               }
             ],
-            attrs: { type: "text" },
+            staticClass: "form-control",
             domProps: { value: _vm.form.content_projets_annexes },
             on: {
               input: function($event) {
@@ -40164,7 +40466,7 @@ var render = function() {
                 _vm._v("Contenu du projet")
               ]),
               _vm._v(" "),
-              _c("input", {
+              _c("textarea", {
                 directives: [
                   {
                     name: "model",
@@ -40174,7 +40476,6 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text" },
                 domProps: { value: _vm.timeline.content_projets },
                 on: {
                   input: function($event) {
@@ -40228,7 +40529,7 @@ var render = function() {
                 _vm._v("Contenu des projets annexes")
               ]),
               _vm._v(" "),
-              _c("input", {
+              _c("textarea", {
                 directives: [
                   {
                     name: "model",
@@ -40238,7 +40539,6 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "text" },
                 domProps: { value: _vm.timeline.content_projets_annexes },
                 on: {
                   input: function($event) {
@@ -40291,21 +40591,17 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container container-back" }, [
-    _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-sm-4" }, [
-        _c("img", {
-          staticClass: "img_rounded",
-          attrs: { src: "/img/profil_lkd_fanny.jpg", alt: "photo de profil" }
-        })
-      ]),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _vm._m(1)
+  return _c("div", { staticClass: "row justify-content-center" }, [
+    _c("div", { staticClass: "col-sm-4" }, [
+      _c("img", {
+        staticClass: "img_rounded",
+        attrs: { src: "/img/profil_lkd_fanny.jpg", alt: "photo de profil" }
+      })
     ]),
     _vm._v(" "),
-    _c("div")
+    _vm._m(0),
+    _vm._v(" "),
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
@@ -40322,9 +40618,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-7 heading-content" }, [
-      _c("h2", [_vm._v("Développeuse web")]),
+      _c("h2", [_vm._v("Fanny Bellais")]),
       _vm._v(" "),
-      _c("p", [_vm._v("Mais pas que !")])
+      _c("p", [_vm._v("Développeuse web")])
     ])
   }
 ]
@@ -40452,7 +40748,150 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "row" }, [
+    _c(
+      "div",
+      { staticClass: "col-md-12" },
+      [
+        _vm.displayHeadQ
+          ? _c("div", { staticClass: "quizz-head" }, [
+              _c("h1", [_vm._v("Êtes vous prêt ?")]),
+              _vm._v(" "),
+              _c("button", { on: { click: _vm.openQuizz } }, [
+                _vm._v("Gooooooooooo !")
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("transition", { attrs: { name: "slide", mode: "out-in" } }, [
+          _vm.displayQuizz
+            ? _c(
+                "div",
+                { staticClass: "quizz-block" },
+                [
+                  _vm._l(_vm.questionchoix, function(item, index) {
+                    return _c("div", { staticClass: "question" }, [
+                      _vm.questionIndex === index
+                        ? _c(
+                            "div",
+                            { staticClass: "question-reponse" },
+                            [
+                              _c("h5", [_vm._v(_vm._s(item.question))]),
+                              _vm._v(" "),
+                              _vm._l(item.choix, function(r, i) {
+                                return _c("div", { staticClass: "reponseQ" }, [
+                                  _c("label", { attrs: { for: "reponse" } }, [
+                                    _c("input", {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.userResponses[index],
+                                          expression: "userResponses[index]"
+                                        }
+                                      ],
+                                      attrs: { type: "radio", name: index },
+                                      domProps: {
+                                        value: r.is_valide,
+                                        checked: _vm._q(
+                                          _vm.userResponses[index],
+                                          r.is_valide
+                                        )
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          return _vm.$set(
+                                            _vm.userResponses,
+                                            index,
+                                            r.is_valide
+                                          )
+                                        }
+                                      }
+                                    }),
+                                    _vm._v(
+                                      " " +
+                                        _vm._s(r.choix) +
+                                        "\n                            "
+                                    )
+                                  ])
+                                ])
+                              }),
+                              _vm._v(" "),
+                              _c("button", { on: { click: _vm.next } }, [
+                                _vm._v("Prochaine question")
+                              ])
+                            ],
+                            2
+                          )
+                        : _vm._e()
+                    ])
+                  }),
+                  _vm._v(" "),
+                  _vm.questionIndex === _vm.questionchoix.length
+                    ? _c("div", { staticClass: "score" }, [
+                        _c("p", [
+                          _vm._v(
+                            _vm._s(_vm.score()) +
+                              " / " +
+                              _vm._s(_vm.questionIndex)
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm.score() === _vm.questionIndex
+                          ? _c("div", { staticClass: "congrat-message" }, [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.scoremessage) +
+                                  "\n                    "
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.score() < _vm.questionIndex
+                          ? _c("div", { staticClass: "oops-message" }, [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(_vm.scoremessageunder) +
+                                  "\n                        "
+                              ),
+                              _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.tryagain()
+                                    }
+                                  }
+                                },
+                                [_vm._v("On réessaie !")]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "button",
+                                {
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      return _vm.gotoContact()
+                                    }
+                                  }
+                                },
+                                [_vm._v("Contact")]
+                              )
+                            ])
+                          : _vm._e()
+                      ])
+                    : _vm._e()
+                ],
+                2
+              )
+            : _vm._e()
+        ])
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
