@@ -13,13 +13,13 @@
                     <label for="projets">projets</label>
                     <input type="text" class="form-control" v-model="timeline.projets">
                     <label for="content_projets">Contenu du projet</label>
-                    <input type="text" class="form-control" v-model="timeline.content_projets"/>
+                    <textarea class="form-control" v-model="timeline.content_projets"></textarea>
                     <br/>
                     <label for="projets_annexes">Projets_annexes</label>
                     <input type="text" class="form-control" v-model="timeline.projets_annexes">
                     <br/>
                     <label for="content_projets_annexes">Contenu des projets annexes</label>
-                    <input type="text" class="form-control" v-model="timeline.content_projets_annexes"/>
+                    <textarea  class="form-control" v-model="timeline.content_projets_annexes"></textarea>
                     <br/>
                 </div>
                 <button type="submit" class="btn btn-primary">Update</button>
