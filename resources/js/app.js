@@ -12,11 +12,23 @@ import EditTimeline from './components/EditTimeline.vue';
 
 import CreateTimeline from './components/CreateTimeline.vue';
 import CreateQuizz from './components/CreateQuizzComponent.vue'
+import LogoIcon from 'vue-ionicons/dist/ionicons-logo'
+
+
+
+
+
 require('./bootstrap');
+require('vue-ionicons/ionicons.css')
+
+
 
 window.Vue = require('vue').default;
 
+
 Vue.use(VueRouter);
+Vue.use(LogoIcon)
+
 
 const routes = [{
     path: '/',
