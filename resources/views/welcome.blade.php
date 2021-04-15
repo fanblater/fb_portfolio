@@ -56,10 +56,9 @@
                                             <li>
                                                             <router-link to="/register">Register</router-link>
                                                         </li> --}}
-                                <li><a target="blank" href="https://linkedin.com/in/fanny-bellais"> <img
-                                            src="{{asset('img/linkedin.svg')}}" alt="Linkdin link logo"></a></li>
-                                <li><a target="blank" href="https://github.com/fanblater"><img
-                                            src="{{asset('img/github-sign.svg')}}" alt="github link logo"></a></li>
+                                <li><a target="blank" href="https://linkedin.com/in/fanny-bellais">
+                                    <logo-linkedin-icon/></a></li>
+                                <li><a target="blank" href="https://github.com/fanblater"><logo-github-icon/></a></li>
                             </ul>
 
                         </nav>
