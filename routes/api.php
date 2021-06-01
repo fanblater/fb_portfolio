@@ -8,8 +8,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\TimelineController;
-use App\Models\Choix;
-use App\Models\Question;
+
 
 /*
 |--------------------------------------------------------------------------
