@@ -1,23 +1,20 @@
 html,
 body {
     margin: 0;
-    padding: 3px;
+    /*padding: 3px;*/
     box-sizing: border-box;
     height: 100%;
     background: white;
+    border-bottom: 15px solid #F27999;
+    border-top: 15px solid #F27999;
+    border-right: 15px solid #F27999;
+    border-left: 15px solid #F27999;
 }
 ul li{
     list-style: none;
 }
   #app {
-    /* overflow: hidden; */
-height: 100%;
-background: rgba(242, 121, 153, 0.50);
-box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-backdrop-filter: blur(20.0px);
--webkit-backdrop-filter: blur(20.0px);
-border-radius: 36px;
-border: 1px solid rgba(255, 255, 255, 0.18);
+        height: 100%;
 }
 
 #wave{
@@ -34,41 +31,61 @@ border: 1px solid rgba(255, 255, 255, 0.18);
     height: 100%;
     width: 100%;
     background-repeat: repeat;
-    border-bottom-right-radius: 38px;
+
 
 }
 
 
- @keyframes wave {
-    0% {
-        transform: perspective(2rem);
-    }
 
-    50% {
- transform: perspective(5rem);
-    }
 
-    100% {
-transform: perspective(10rem);
-    }
-}
-
+/* header */
 .logo {
-    position: absolute;
-    left: 0;
+   /*  position: absolute;
+    left: 0; */
     height: 300px;
     width: 170px;
-    top: -74px;
+    /* top: -74px; */
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
+.top-header{
+    margin-top: -6rem;
+}
+
+.nav-rounded{
+    display: flex;
+    justify-content: flex-end;
+}
+.nav-rounded li {
+    margin-left: 1rem;
+
+}
+.nav-rounded li a {
+    font-size: large;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #D93D1A;
+}
+/* home content center */
+
+.home-content{
+    display: flex;
+    justify-content: center;
+    margin-top: 5rem;
+    height: 21rem;
+}
 .img_rounded {
     border-radius: 50%;
     height: 300px;
     width: 300px;
-    border: 4px solid #D93D1A;
+    border: 4px solid #A0CCF2;
     box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);
     -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);
     -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);
+    margin-right: 2.5rem;
 }
 
 .slash {
@@ -79,11 +96,10 @@ transform: perspective(10rem);
    box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);
    -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);
    -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);
+   margin-right: 4rem;
 }
-.home-content{
-    margin-left: 5rem;
-}
-.heading-content {
+
+ .heading-content {
     margin-top: 6.5rem;
 
 }
@@ -103,8 +119,15 @@ transform: perspective(10rem);
     text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);
 
 }
-
-
+  .balise-right{
+     height: 40rem;
+     margin-top: -230px;
+ }
+ .balise-left{
+    height: 40rem;
+    margin-top: -150px;
+ }
+/*
 nav ul li {
     background:none;
     padding: 0.5rem;
@@ -135,9 +158,9 @@ Calibri,
 sans-serif;
 font-size: 1rem;
 }
-nav ul li a img{
-    width: 36px;
-}
+ */
+
+/* transition */
 .slide-enter-active,
 .slide-leave-active {
     transition: 800ms;
@@ -150,10 +173,14 @@ nav ul li a img{
 .slide-leave-to {
     transform: translate(-130%, 0);
 }
+
+/*Timeline*/
+
 .tuile {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    flex-direction: column;
 }
 .tuile-dates{
     display: flex;
@@ -164,25 +191,34 @@ nav ul li a img{
 
 }
 .tuile-dates ul{
-    height: 432px;
-    width: 117px;
+    min-width: 250px;
+    min-height: 250px;
+    margin-right: 1rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background-color: #A6036D;
-    border-radius: 75px 0px 75px 0px;
-    box-shadow: 1px 1px 2px grey;
+    border: 10px solid #A0CCF2;
+    padding: 0;
+    background-color: white;
+   /*  border-radius: 75px 0px 75px 0px;
+    box-shadow: 1px 1px 2px grey; */
 
 }
-.tuile-dates ul:nth-child(even){
-    background-color: #A0CCF2;
+/* .tuile-dates ul:nth-child(even){
+    border: 10px solid #A0CCF2;
+} */
+.tuile-dates ul:hover{
+    box-shadow: 10px 10px #F2D272;
 }
+
 .tuile-dates ul li {
-    color: azure;
-    font-size: large;
+    color: #F27999;
+    font-size: 2.5rem;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight: bolder;
+    text-align: center;
     text-shadow: 1px 1px 2px grey;
+    cursor: pointer;
 }
 
 .title{
@@ -200,6 +236,7 @@ nav ul li a img{
     font-size: 1.5rem;
     font-weight: bolder;
     color: #D93D1A;
+white-space: pre-wrap;
 }
 .project-name{
     font-family: 'Gill Sans',
@@ -207,7 +244,7 @@ nav ul li a img{
     Calibri,
     'Trebuchet MS',
     sans-serif;
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     font-weight: bolder;
     color: #A0CCF2;
 }
@@ -218,14 +255,20 @@ nav ul li a img{
     white-space: pre-wrap;
 }
 .tuile-content ul{
-    padding: 2rem;
-    margin-left: 2rem;
-     background-color: azure;
-     border-radius: 75px 0px 75px 0px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    padding-left: 0;
 
-     width: 641px;
-     box-shadow: 1px 1px 2px grey;
 
+}
+.tuile-content ul li {
+    border: 10px solid #F2D272;
+    max-width: 500px;
+    max-height: 500px;
+    margin-right: 1rem;
+    padding: 1rem;
+    background-color: white;
 }
 
 
@@ -234,7 +277,7 @@ nav ul li a img{
 
 }
 .expand-enter, .expand-leave-to{
-    transform: translateX(150px);
+    transform: translateY(150px);
     opacity: 0;
 
 }
