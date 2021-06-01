@@ -2353,6 +2353,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2642,11 +2645,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -2698,8 +2696,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _css_app_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../css/app.css */ "./resources/css/app.css");
 /* harmony import */ var _components_Homecomponent_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/Homecomponent.vue */ "./resources/js/components/Homecomponent.vue");
 /* harmony import */ var _components_ContactComponent_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ContactComponent.vue */ "./resources/js/components/ContactComponent.vue");
@@ -2712,6 +2710,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_CreateTimeline_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/CreateTimeline.vue */ "./resources/js/components/CreateTimeline.vue");
 /* harmony import */ var _components_CreateQuizzComponent_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/CreateQuizzComponent.vue */ "./resources/js/components/CreateQuizzComponent.vue");
 /* harmony import */ var vue_ionicons_dist_ionicons_logo__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! vue-ionicons/dist/ionicons-logo */ "./node_modules/vue-ionicons/dist/ionicons-logo.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_12__);
 
 
 
@@ -2726,14 +2726,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! vue-ionicons/ionicons.css */ "./node_modules/vue-ionicons/ionicons.css");
 
-window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js").default;
-vue__WEBPACK_IMPORTED_MODULE_12__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_13__.default);
-vue__WEBPACK_IMPORTED_MODULE_12__.default.use(vue_ionicons_dist_ionicons_logo__WEBPACK_IMPORTED_MODULE_11__.default);
+vue__WEBPACK_IMPORTED_MODULE_13__.default.prototype.$http = (axios__WEBPACK_IMPORTED_MODULE_12___default());
+vue__WEBPACK_IMPORTED_MODULE_13__.default.use(vue_router__WEBPACK_IMPORTED_MODULE_14__.default);
+vue__WEBPACK_IMPORTED_MODULE_13__.default.use(vue_ionicons_dist_ionicons_logo__WEBPACK_IMPORTED_MODULE_11__.default);
+vue__WEBPACK_IMPORTED_MODULE_13__.default.config.productionTip = false;
 var routes = [{
   path: '/',
   component: _components_Homecomponent_vue__WEBPACK_IMPORTED_MODULE_1__.default,
@@ -2757,7 +2760,7 @@ var routes = [{
   component: _components_Dashboard_vue__WEBPACK_IMPORTED_MODULE_7__.default,
   name: 'Dashboard',
   beforeEnter: function beforeEnter(to, form, next) {
-    axios.get('/api/authenticated').then(function () {
+    axios__WEBPACK_IMPORTED_MODULE_12___default().get('/api/authenticated').then(function () {
       next();
     })["catch"](function () {
       return next({
@@ -2790,10 +2793,10 @@ var routes = [{
     requiresAuth: true
   }
 }];
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_13__.default({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_14__.default({
   routes: routes
 });
-var app = new vue__WEBPACK_IMPORTED_MODULE_12__.default({
+var app = new vue__WEBPACK_IMPORTED_MODULE_13__.default({
   el: '#app',
   CustomCss: _css_app_css__WEBPACK_IMPORTED_MODULE_0__.default,
   router: router
@@ -7334,7 +7337,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_img_bcpath_svg__WEBPACK_IMPORTED_MODULE_2__.default);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody {\n    margin: 0;\n    padding: 3px;\n    box-sizing: border-box;\n    height: 100%;\n    background: white;\n}\nul li{\n    list-style: none;\n}\n  #app {\n    /* overflow: hidden; */\nheight: 100%;\nbackground: rgba(242, 121, 153, 0.50);\nbox-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);\nbackdrop-filter: blur(20.0px);\n-webkit-backdrop-filter: blur(20.0px);\nborder-radius: 36px;\nborder: 1px solid rgba(255, 255, 255, 0.18);\n}\n\n#wave{\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    position: absolute;\n    bottom: 0;\n    right: 0;\n    -webkit-animation: wave 15s linear infinite;\n    animation: wave 15s linear infinite;\n    background-position: bottom -460px right -152px;\n    background-size: 149rem;\n    background-origin: content-box;\n    background-attachment: fixed;\n    height: 100%;\n    width: 100%;\n    background-repeat: repeat;\n    border-bottom-right-radius: 38px;\n\n}\n\n\n @-webkit-keyframes wave {\n    0% {\n        transform: perspective(2rem);\n    }\n\n    50% {\n transform: perspective(5rem);\n    }\n\n    100% {\ntransform: perspective(10rem);\n    }\n}\n\n\n @keyframes wave {\n    0% {\n        transform: perspective(2rem);\n    }\n\n    50% {\n transform: perspective(5rem);\n    }\n\n    100% {\ntransform: perspective(10rem);\n    }\n}\n\n.logo {\n    position: absolute;\n    left: 0;\n    height: 300px;\n    width: 170px;\n    top: -74px;\n}\n\n.img_rounded {\n    border-radius: 50%;\n    height: 300px;\n    width: 300px;\n    border: 4px solid #D93D1A;\n    box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n\n.slash {\n    width: 15px;\n    height: 100%;\n    transform: skew(-20deg);\n    background: #F2D272;\n   box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n}\n.home-content{\n    margin-left: 5rem;\n}\n.heading-content {\n    margin-top: 6.5rem;\n\n}\n\n.heading-content h2 {\n    color: #D93D1A;\n    font-size: 4rem;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n.heading-content p {\n    color: #A6036D;\n    font-size: 3rem;\n    font-weight: lighter;\n    font-style: italic;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n\nnav ul li {\n    background:none;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n}\n\nnav ul li:not(:nth-last-of-type(-n+2)) {\n    border-radius: 50px;\n    background-color: #A6036D;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n\n}\nnav ul li a {\ncolor: antiquewhite;\nfont-family: 'Gill Sans',\n'Gill Sans MT',\nCalibri,\n'Trebuchet MS',\nsans-serif;\nfont-size: 1rem;\n}\nnav ul li a img{\n    width: 36px;\n}\n.slide-enter-active,\n.slide-leave-active {\n    transition: 800ms;\n}\n\n.slide-enter {\n    transform: translate(100%, 0)\n}\n\n.slide-leave-to {\n    transform: translate(-130%, 0);\n}\n.tuile {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n}\n.tuile-dates{\n    display: flex;\n    justify-content: flex-start;\n    flex-wrap: nowrap;\n    flex-direction: row;\n    align-items: center;\n\n}\n.tuile-dates ul{\n    height: 432px;\n    width: 117px;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    background-color: #A6036D;\n    border-radius: 75px 0px 75px 0px;\n    box-shadow: 1px 1px 2px grey;\n\n}\n.tuile-dates ul:nth-child(even){\n    background-color: #A0CCF2;\n}\n.tuile-dates ul li {\n    color: azure;\n    font-size: large;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-weight: bolder;\n    text-shadow: 1px 1px 2px grey;\n}\n\n.title{\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 2rem;\n    font-weight: bolder;\n    color: #A6036D;\n}\n.timeline-title {\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.5rem;\n    font-weight: bolder;\n    color: #D93D1A;\n}\n.project-name{\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.2rem;\n    font-weight: bolder;\n    color: #A0CCF2;\n}\n.project-content{\n    color: black;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 1rem;\n    white-space: pre-wrap;\n}\n.tuile-content ul{\n    padding: 2rem;\n    margin-left: 2rem;\n     background-color: azure;\n     border-radius: 75px 0px 75px 0px;\n\n     width: 641px;\n     box-shadow: 1px 1px 2px grey;\n\n}\n\n\n.expand-enter-active, .expand-leave-active{\n    transition: all 1s ease-in;\n\n}\n.expand-enter, .expand-leave-to{\n    transform: translateX(150px);\n    opacity: 0;\n\n}\n.fade-enter-active,\n.fade-leave-active {\n    transition: opactity .5s;\n}\n.fade-enter,\n.fade-leave-to {\n    opacity: 0;\n}\n\n/*Quizz part */\n\n.quizz-head{\n    background-color: azure;\n    border-radius: 50px;\n    display: flex;\n    width: 56%;\n    justify-content: space-evenly;\n    align-items: center;\n    margin-left: 30%;\n    margin-top: -13rem;\n    padding: 1rem;\n}\n.quizz-head h1{\n    color: #A6036D;\n}\n.quizz-head button {\n    background-color: #A6036D;\n    border-radius: 50px;\n    padding: 1rem;\n    color: azure;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 1rem;\n    border-style: none;\n\n}\n.quizz-block{\n    display: flex;\n    justify-content: center;\n    background-color: azure;\n    border-radius: 50px;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "html,\nbody {\n    margin: 0;\n    /*padding: 3px;*/\n    box-sizing: border-box;\n    height: 100%;\n    background: white;\n    border-bottom: 15px solid #F27999;\n    border-top: 15px solid #F27999;\n    border-right: 15px solid #F27999;\n    border-left: 15px solid #F27999;\n}\nul li{\n    list-style: none;\n}\n  #app {\n        height: 100%;\n}\n\n#wave{\n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    position: absolute;\n    bottom: 0;\n    right: 0;\n    -webkit-animation: wave 15s linear infinite;\n    animation: wave 15s linear infinite;\n    background-position: bottom -460px right -152px;\n    background-size: 149rem;\n    background-origin: content-box;\n    background-attachment: fixed;\n    height: 100%;\n    width: 100%;\n    background-repeat: repeat;\n\n\n}\n\n\n\n\n/* header */\n.logo {\n   /*  position: absolute;\n    left: 0; */\n    height: 300px;\n    width: 170px;\n    /* top: -74px; */\n}\n.header{\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n}\n\n.top-header{\n    margin-top: -6rem;\n}\n\n.nav-rounded{\n    display: flex;\n    justify-content: flex-end;\n}\n.nav-rounded li {\n    margin-left: 1rem;\n\n}\n.nav-rounded li a {\n    font-size: large;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    color: #D93D1A;\n}\n/* home content center */\n\n.home-content{\n    display: flex;\n    justify-content: center;\n    margin-top: 5rem;\n    height: 21rem;\n}\n.img_rounded {\n    border-radius: 50%;\n    height: 300px;\n    width: 300px;\n    border: 4px solid #A0CCF2;\n    box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n    margin-right: 2.5rem;\n}\n\n.slash {\n    width: 15px;\n    height: 100%;\n    transform: skew(-20deg);\n    background: #F2D272;\n   box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -webkit-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   -moz-box-shadow: -3px 0px 8px -1px rgba(0, 0, 0, 0.349);\n   margin-right: 4rem;\n}\n\n .heading-content {\n    margin-top: 6.5rem;\n\n}\n\n.heading-content h2 {\n    color: #D93D1A;\n    font-size: 4rem;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n\n.heading-content p {\n    color: #A6036D;\n    font-size: 3rem;\n    font-weight: lighter;\n    font-style: italic;\n    text-shadow: -2px 2px 6px rgba(0, 0, 0, 0.13);\n\n}\n  .balise-right{\n     height: 40rem;\n     margin-top: -230px;\n }\n .balise-left{\n    height: 40rem;\n    margin-top: -150px;\n }\n/*\nnav ul li {\n    background:none;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n}\n\nnav ul li:not(:nth-last-of-type(-n+2)) {\n    border-radius: 50px;\n    background-color: #A6036D;\n    padding: 0.5rem;\n    list-style: none;\n    justify-content: center;\n    align-items: center;\n    text-align: center;\n    margin: 1rem;\n\n}\nnav ul li a {\ncolor: antiquewhite;\nfont-family: 'Gill Sans',\n'Gill Sans MT',\nCalibri,\n'Trebuchet MS',\nsans-serif;\nfont-size: 1rem;\n}\n */\n\n/* transition */\n.slide-enter-active,\n.slide-leave-active {\n    transition: 800ms;\n}\n\n.slide-enter {\n    transform: translate(100%, 0)\n}\n\n.slide-leave-to {\n    transform: translate(-130%, 0);\n}\n\n/*Timeline*/\n\n.tuile {\n    display: flex;\n    justify-content: flex-start;\n    align-items: center;\n    flex-direction: column;\n}\n.tuile-dates{\n    display: flex;\n    justify-content: flex-start;\n    flex-wrap: nowrap;\n    flex-direction: row;\n    align-items: center;\n\n}\n.tuile-dates ul{\n    min-width: 250px;\n    min-height: 250px;\n    margin-right: 1rem;\n    display: flex;\n    justify-content: center;\n    flex-direction: column;\n    border: 10px solid #A0CCF2;\n    padding: 0;\n    background-color: white;\n   /*  border-radius: 75px 0px 75px 0px;\n    box-shadow: 1px 1px 2px grey; */\n\n}\n/* .tuile-dates ul:nth-child(even){\n    border: 10px solid #A0CCF2;\n} */\n.tuile-dates ul:hover{\n    box-shadow: 10px 10px #F2D272;\n}\n\n.tuile-dates ul li {\n    color: #F27999;\n    font-size: 2.5rem;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-weight: bolder;\n    text-align: center;\n    text-shadow: 1px 1px 2px grey;\n    cursor: pointer;\n}\n\n.title{\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 2rem;\n    font-weight: bolder;\n    color: #A6036D;\n}\n.timeline-title {\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.5rem;\n    font-weight: bolder;\n    color: #D93D1A;\nwhite-space: pre-wrap;\n}\n.project-name{\n    font-family: 'Gill Sans',\n    'Gill Sans MT',\n    Calibri,\n    'Trebuchet MS',\n    sans-serif;\n    font-size: 1.5rem;\n    font-weight: bolder;\n    color: #A0CCF2;\n}\n.project-content{\n    color: black;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 1rem;\n    white-space: pre-wrap;\n}\n.tuile-content ul{\n    display: flex;\n    justify-content: space-around;\n    flex-direction: row;\n    padding-left: 0;\n\n\n}\n.tuile-content ul li {\n    border: 10px solid #F2D272;\n    max-width: 500px;\n    max-height: 500px;\n    margin-right: 1rem;\n    padding: 1rem;\n    background-color: white;\n}\n\n\n.expand-enter-active, .expand-leave-active{\n    transition: all 1s ease-in;\n\n}\n.expand-enter, .expand-leave-to{\n    transform: translateY(150px);\n    opacity: 0;\n\n}\n.fade-enter-active,\n.fade-leave-active {\n    transition: opactity .5s;\n}\n.fade-enter,\n.fade-leave-to {\n    opacity: 0;\n}\n\n/*Quizz part */\n\n.quizz-head{\n    background-color: azure;\n    border-radius: 50px;\n    display: flex;\n    width: 56%;\n    justify-content: space-evenly;\n    align-items: center;\n    margin-left: 30%;\n    margin-top: -13rem;\n    padding: 1rem;\n}\n.quizz-head h1{\n    color: #A6036D;\n}\n.quizz-head button {\n    background-color: #A6036D;\n    border-radius: 50px;\n    padding: 1rem;\n    color: azure;\n    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;\n    font-size: 1rem;\n    border-style: none;\n\n}\n.quizz-block{\n    display: flex;\n    justify-content: center;\n    background-color: azure;\n    border-radius: 50px;\n}\n\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51167,8 +51170,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row justify-content-center" }, [
-    _c("div", { staticClass: "col-sm-4" }, [
+  return _c("div", { staticClass: "home-content" }, [
+    _c("img", {
+      staticClass: "balise-left",
+      attrs: { src: "/img/arrow-left.svg", alt: "balise-left" }
+    }),
+    _vm._v(" "),
+    _c("div", [
       _c("img", {
         staticClass: "img_rounded",
         attrs: { src: "/img/profil_lkd_fanny.jpg", alt: "photo de profil" }
@@ -51177,11 +51185,16 @@ var render = function() {
     _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "col-sm-7 heading-content" }, [
-      _c("h2", [_vm._v(_vm._s(_vm.data.prenom) + _vm._s(_vm.data.nom))]),
+    _c("div", { staticClass: "heading-content" }, [
+      _c("h2", [_vm._v(_vm._s(_vm.prenom) + " " + _vm._s(_vm.nom))]),
       _vm._v(" "),
-      _c("p", [_vm._v(_vm._s(_vm.data.metier))])
-    ])
+      _c("p", [_vm._v(_vm._s(_vm.metier))])
+    ]),
+    _vm._v(" "),
+    _c("img", {
+      staticClass: "balise-right",
+      attrs: { src: "/img/arrow-right.svg", alt: "balise-right" }
+    })
   ])
 }
 var staticRenderFns = [
@@ -51189,9 +51202,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-1" }, [
-      _c("div", { staticClass: "slash" })
-    ])
+    return _c("div", [_c("div", { staticClass: "slash" })])
   }
 ]
 render._withStripped = true
@@ -51669,7 +51680,6 @@ var render = function() {
             {
               on: {
                 click: function($event) {
-                  $event.preventDefault()
                   return _vm.showSelfData(item, $event)
                 }
               }
@@ -51703,10 +51713,8 @@ var render = function() {
               _c("li", [
                 _c("p", { staticClass: "title" }, [
                   _vm._v(" " + _vm._s(content.titre))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
+                ]),
+                _vm._v(" "),
                 content.formation
                   ? _c("p", { staticClass: "timeline-title" }, [
                       _vm._v(_vm._s(content.formation))
@@ -51717,10 +51725,8 @@ var render = function() {
               _c("li", [
                 _c("p", { staticClass: "project-name" }, [
                   _vm._v(_vm._s(content.projets))
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
+                ]),
+                _vm._v(" "),
                 _c("p", { staticClass: "project-content" }, [
                   _vm._v(" " + _vm._s(content.content_projets))
                 ])
@@ -51731,10 +51737,8 @@ var render = function() {
                   ? _c("p", { staticClass: "timeline-title" }, [
                       _vm._v("A côté : " + _vm._s(content.projets_annexes))
                     ])
-                  : _vm._e()
-              ]),
-              _vm._v(" "),
-              _c("li", [
+                  : _vm._e(),
+                _vm._v(" "),
                 _c("p", { staticClass: "project-content" }, [
                   _vm._v(_vm._s(content.content_projets_annexes))
                 ])

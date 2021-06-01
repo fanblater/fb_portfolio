@@ -13,22 +13,22 @@ import EditTimeline from './components/EditTimeline.vue';
 import CreateTimeline from './components/CreateTimeline.vue';
 import CreateQuizz from './components/CreateQuizzComponent.vue'
 import LogoIcon from 'vue-ionicons/dist/ionicons-logo'
-
-
-
-
-
-require('./bootstrap');
-require('vue-ionicons/ionicons.css')
+import axios from 'axios'
 
 
 
 window.Vue = require('vue').default;
 
 
+require('./bootstrap');
+require('vue-ionicons/ionicons.css')
+Vue.prototype.$http = axios;
+
+
 Vue.use(VueRouter);
 Vue.use(LogoIcon)
 
+Vue.config.productionTip = false;
 
 const routes = [{
     path: '/',
@@ -89,12 +89,12 @@ const routes = [{
 
 
 const router = new VueRouter({
-    routes
+    routes : routes
 });
 
 const app = new Vue({
     el: '#app',
     CustomCss,
-    router: router,
+    router,
 
 });
