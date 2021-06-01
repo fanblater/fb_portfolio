@@ -1,15 +1,18 @@
 <template>
-        <div class="row justify-content-center">
-            <div class="col-sm-4">
+        <div class="home-content">
+        <img class="balise-left" :src="'/img/arrow-left.svg'" alt="balise-left">
+            <div >
                 <img class="img_rounded" :src="'/img/profil_lkd_fanny.jpg'" alt="photo de profil">
             </div>
-            <div class="col-sm-1">
+            <div >
                 <div class="slash"></div>
             </div>
-            <div class="col-sm-7 heading-content">
-                <h2>{{data.prenom}}{{data.nom}}</h2>
-                <p >{{data.metier}}</p>
+            <div class="heading-content">
+                <h2>{{prenom}} {{nom}}</h2>
+                <p >{{metier}}</p>
             </div>
+        <img class="balise-right" :src="'/img/arrow-right.svg'" alt="balise-right">
+
         </div>
 </template>
 
@@ -20,7 +23,9 @@
                 nom: "BELLAIS",
                 prenom: "Fanny",
                 metier: "Développeuse web"
+
             }
+
         },
         mounted() {
             console.log('Home component mounted.')
