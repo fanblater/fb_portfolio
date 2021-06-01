@@ -3,7 +3,7 @@
         <div class="tuile">
                 <div class="tuile-dates">
                     <ul v-for="(item, date) in orderByDate" :key="date">
-                        <li v-on:click.prevent="showSelfData(item, $event)" >{{date}}</li>
+                        <li @click="showSelfData(item, $event)" >{{date}}</li>
                     </ul>
                 </div>
                 <div class="tuile-content">
@@ -11,21 +11,16 @@
                             <ul v-for="(content, i)  in itemTimeline" v-bind:key="i">
                                 <li>
                                     <p class="title"> {{content.titre}}</p>
-                                </li>
-                                <li>
-                                    <p class="timeline-title" v-if="content.formation">{{content.formation}}</p>
+                                     <p class="timeline-title" v-if="content.formation">{{content.formation}}</p>
                                 </li>
                                 <li>
                                     <p class="project-name">{{content.projets}}</p>
+                                     <p class="project-content"> {{content.content_projets}}</p>
                                 </li>
-                                <li>
-                                    <p class="project-content"> {{content.content_projets}}</p>
-                                </li>
+
                                 <li>
                                     <p class="timeline-title" v-if="content.projets_annexes">A côté : {{content.projets_annexes}}</p>
-                                </li>
-                                <li>
-                                    <p class="project-content">{{content.content_projets_annexes}}</p>
+                                     <p class="project-content">{{content.content_projets_annexes}}</p>
                                 </li>
                             </ul>
                     </transition>
