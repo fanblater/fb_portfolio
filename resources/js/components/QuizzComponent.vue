@@ -6,7 +6,7 @@
                 <h1>Êtes vous prêt ?</h1>
                 <button v-on:click="openQuizz">Gooooooooooo !</button>
             </div>
-
+ 
             <transition name="slide" mode="out-in">
                 <div class="quizz-block" v-if="displayQuizz">
                     <div class="question" v-for="(item, index) in questionchoix" :key="index">
